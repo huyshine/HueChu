@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home V.1 - Organic - Food E-commerce HTML Template</title>
+    <title>Organic - Food</title>
     <!-- favicon icon -->
     <link rel="shortcut icon" href="./view/assets/images/icons/favicon.ico" type="image/x-icon" />
 
@@ -103,7 +103,7 @@
                     <!-- web menubar start-->
                     <div class="webMenu d-none d-lg-block position-relative">
                         <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand position-relative" href="index.html"><img
+                            <a class="navbar-brand position-relative" href="index.php?page=trang-chu"><img
                                     src="./view/assets/images/logo/logo.png" alt="image_not_found" /></a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -113,19 +113,16 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav main_menu_list m-auto after_navbar">
                                     <li class="nav-item nav_item_has_child px-2 dropdown">
-                                        <a class="nav-link active" aria-current="page" href="index.php?page"
+                                        <a class="nav-link active" aria-current="page" href="index.php?page=trang-chu"
                                             id="home_submenu" role="button" aria-expanded="false">Home</a>
                                     </li>
                                     <li class="nav-item nav_item_has_child px-2 dropdown">
-                                        <a class="nav-link" href="#" id="shop_submenu" role="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                                        <a class="nav-link" href="index.php?page=san-pham" id="shop_submenu"
+                                            role="button" aria-expanded="false">Shop</a>
                                     </li>
                                     <li class="nav-item nav_item_has_child px-2 dropdown">
-                                        <a href="index.php?page=gioithieu" class="nav-link" id="blog_submenu"
+                                        <a href="index.php?page=gioi-thieu" class="nav-link" id="blog_submenu"
                                             role="button" aria-expanded="false">Blog</a>
-                                    </li>
-                                    <li class="nav-item nav_item_has_child px-2">
-                                        <a class="nav-link" href="#!">Portfolio</a>
                                     </li>
                                     <li class="nav-item nav_item_has_child px-2 dropdown">
                                         <a class="nav-link" href="#" id="page_submenu" role="button"
@@ -154,20 +151,15 @@
                                                         <div class="mega_item_area ms-5 my-4 position-relative">
                                                             <h4>All Inner Page</h4>
                                                             <ul class="list-unstyled">
+
                                                                 <li>
-                                                                    <a href="cart.html">Cart Page</a>
+                                                                    <a href="index.php?page=ve-chung-toi">About</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="faqs.html">Faqs Page</a>
+                                                                    <a href="index.php?page=nguoi-ban">Vendor</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="about-us.html">About</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="checkout.html">Checkout Page</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="compare.html">Compare Page</a>
+                                                                    <a href="index.php?page=so-sanh">Compare Page</a>
                                                                 </li>
                                                             </ul>
                                                             <div class="mega_item_thumb1 position-absolute">
@@ -181,21 +173,10 @@
                                                             <h4>All Inner Page</h4>
                                                             <ul class="list-unstyled">
                                                                 <li>
-                                                                    <a href="vendor.html">Vendor Page</a>
+                                                                    <a href="index.php?page=dat-hang">Checkout Page</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="vendor-profile.html">Vendor Profile</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="vendor-dashboard.html">Vendor Dashboard</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="product-detail.html">Product Details
-                                                                        V.1</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="product-detail-2.html">Product Details
-                                                                        V.2</a>
+                                                                    <a href="index.php?page=gio-hang">Cart Page</a>
                                                                 </li>
                                                             </ul>
                                                             <div class="mega_item_thumb2 position-absolute">
@@ -209,8 +190,8 @@
                                         </div>
                                     </li>
                                     <li class="nav-item nav_item_has_child dropdown px-2">
-                                        <a class="nav-link" href="#" id="contact_submenu" role="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Contacts</a>
+                                        <a class="nav-link" href="index.php?page=lien-he" id="contact_submenu"
+                                            role="button" aria-expanded="false">Contacts</a>
                                     </li>
                                 </ul>
                             </div>
@@ -353,9 +334,6 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="nav-item pe-5">
-                                            <a class="nav-link" href="#!">Portfolio</a>
-                                        </li>
                                         <li class="nav-item pe-4 dropdown">
                                             <a class="nav-link" href="#" id="page_submenu" role="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
@@ -363,31 +341,14 @@
                                                 <div class="sidebar_nav_item">
                                                     <ul class="list-unstyled">
                                                         <li>
-                                                            <a href="cart.html">Cart Page</a>
+                                                            <a href="index.php?page=gio-hang">Cart Page</a>
                                                         </li>
                                                         <li>
-                                                            <a href="faqs.html">Faqs Page</a>
+                                                            <a href="index.php?page=ve-chung-toi">About Us</a>
                                                         </li>
                                                         <li>
-                                                            <a href="about-us.html">About Us V.1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="about-us-2.html">About Us V.2</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="vendor.html">Vendor Page</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="vendor-profile.html">Vendor Profile</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="vendor-dashboard.html">Vendor Dashboard</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="product-detail.html">Product Details V.1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="product-detail-2.html">Product Details V.2</a>
+                                                            <a href="index.php?page=chi-tiet-san-pham">Product Details
+                                                                V.1</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -400,7 +361,7 @@
                                                 <div class="sidebar_nav_item">
                                                     <ul class="list-unstyled">
                                                         <li>
-                                                            <a href="contact-us.html">Contact Us</a>
+                                                            <a href="index.php?page=lien-he">Contact Us</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -489,3 +450,95 @@
                 <!-- collapse search - end -->
             </div>
         </header>
+
+        <!-- sidebar section start -->
+        <section class="sidebar_section">
+            <div class="sidebar_content_wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                            aria-labelledby="offcanvasRightLabel">
+                            <div class="offcanvas-header align-items-center">
+                                <h5 class="mb-0">Organic Products</h5>
+                                <button type="button" class="btn-close text-reset text-end" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <div class="prdc_ctg_product_content mt-1 d-flex align-items-center">
+                                    <div
+                                        class="prdc_ctg_product_img d-flex justify-content-center align-items-center me-3">
+                                        <img src="./view/assets/images/category/cat6.png" alt="image_not_found">
+                                    </div>
+                                    <div class="prdc_ctg_product_text">
+                                        <div class="prdc_ctg_product_title my-2">
+                                            <h5>Organic Cabbage</h5>
+                                        </div>
+                                        <div class="prdc_ctg_product_price mt-1 product_price">
+                                            <span class="sale_price pe-1">$50.00</span>
+                                            <del>$70.00</del>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="prdc_ctg_product_content mt-1 d-flex align-items-center">
+                                    <div
+                                        class="prdc_ctg_product_img d-flex justify-content-center align-items-center me-3">
+                                        <img src="./view/assets/images/category/cat7.png" alt="image_not_found">
+                                    </div>
+                                    <div class="prdc_ctg_product_text">
+                                        <div class="prdc_ctg_product_title my-2">
+                                            <h5>Organic Cabbage</h5>
+                                        </div>
+                                        <div class="prdc_ctg_product_price mt-1 product_price">
+                                            <span class="sale_price pe-1">$40.00</span>
+                                            <del>$60.00</del>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="prdc_ctg_product_content mt-1 d-flex align-items-center">
+                                    <div
+                                        class="prdc_ctg_product_img d-flex justify-content-center align-items-center me-3">
+                                        <img src="./view/assets/images/category/cat8.png" alt="image_not_found">
+                                    </div>
+                                    <div class="prdc_ctg_product_text">
+                                        <div class="prdc_ctg_product_title my-2">
+                                            <h5>Organic Cabbage</h5>
+                                        </div>
+                                        <div class="prdc_ctg_product_price mt-1 product_price">
+                                            <span class="sale_price pe-1">$70.00</span>
+                                            <del>$90.00</del>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="total_price">
+                                    <ul class="ul_li_block mb_30 clearfix">
+                                        <li>
+                                            <span>Subtotal:</span>
+                                            <span>$215</span>
+                                        </li>
+                                        <li>
+                                            <span>Vat 5%:</span>
+                                            <span>$10.75</span>
+                                        </li>
+                                        <li>
+                                            <span>Discount 15%:</span>
+                                            <span>- $32.25</span>
+                                        </li>
+                                        <li>
+                                            <span>Total:</span>
+                                            <span>$191.8875</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="sidebar_btns">
+                                    <ul class="btns_group ul_li_block clearfix">
+                                        <li><a href="cart.html">View Cart</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- sidebar section end -->

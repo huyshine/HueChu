@@ -157,8 +157,7 @@
                                 <span class="total_price">$138.00</span>
                             </td>
                         </tr>
-
-                        <tr>
+                        <!-- <tr>
                             <td>
                                 <div class="cart_product position-relative">
                                     <div class="item_image">
@@ -192,42 +191,7 @@
                             <td>
                                 <span class="total_price">$138.00</span>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="cart_product position-relative">
-                                    <div class="item_image">
-                                        <img src="./view/assets/images/cart/cart3.png" alt="image_not_found">
-                                    </div>
-                                    <button type="button" class="remove_btn position-absolute">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="item_content">
-                                    <a href="shop-list.html">
-                                        <h4 class="item_title">Sustainable</h4>
-                                    </a>
-                                    <span class="item_type">Shop groceries</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="price_text">$36.00</span>
-                            </td>
-                            <td>
-                                <div class="quantity_input">
-                                    <form action="#">
-                                        <span class="input_number_decrement">–</span>
-                                        <input class="input_number" value="1">
-                                        <span class="input_number_increment">+</span>
-                                    </form>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="total_price">$138.00</span>
-                            </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

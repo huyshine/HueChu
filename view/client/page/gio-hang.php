@@ -219,7 +219,7 @@
                             <li><span>Total</span> <span>$197.99</span></li>
                         </ul>
                         <div class="btn_wrap pt-0 text-center">
-                            <a href="#" class="btn text-uppercase text-white rounded-pill">Proceed to
+                            <a href="index.php?page=dat-hang" class="btn text-uppercase text-white rounded-pill">Proceed to
                                 Checkout</a>
                         </div>
                     </div>

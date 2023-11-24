@@ -66,51 +66,6 @@
                     <td><textarea class="spmt border-2 border-[#CCCCCC]" name="description" id="" cols="52" rows="10"></textarea></td>
                 </tr>
                 <tr>
-                    <td>Đời xe</td>
-                </tr>
-                <tr>
-                    <td><input type="number" min="1" name="doi_xe"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="loi">
-                        <?php if (isset($_SESSION['error_product']['doi_xe'])) : ?>
-                                <?= $_SESSION['error_product']['doi_xe'] ?>
-                            <?php endif ?>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Công xuất</td>
-                </tr>
-                <tr>
-                    <td><input type="number" min="1" name="cong_xuat"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="loi">
-                        <?php if (isset($_SESSION['error_product']['cong_xuat'])) : ?>
-                                <?= $_SESSION['error_product']['cong_xuat'] ?>
-                            <?php endif ?>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Màu</td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="color"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="loi">
-                        <?php if (isset($_SESSION['error_product']['color'])) : ?>
-                                <?= $_SESSION['error_product']['color'] ?>
-                            <?php endif ?>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
                     <td>Số lượng</td>
                 </tr>
                 <tr>

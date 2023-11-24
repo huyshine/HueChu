@@ -9,8 +9,8 @@ if (isset($_POST['capnhattk'])) {
   capnhat_tk($user_id, $hovaten, $email, $tel);
   if (!isset($_SESSION['errors']['hovaten']) && !isset($_SESSION['errors']['email']) && !isset($_SESSION['errors']['sdt'])) {
     $_SESSION['capnhatthanhcong'] = "Cập nhật tài khoản thành công";
-    header("location: index.php?act=vao_trang_taikhoan");
+    header("location: index.php?page=vao_trang_taikhoan");
   } else {
-    header("location: index.php?act=vao_trang_taikhoan");
+    header("location: index.php?page=vao_trang_taikhoan");
   }
 }

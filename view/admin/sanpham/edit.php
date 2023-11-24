@@ -69,51 +69,6 @@
                     <td><textarea class="spmt border-2" name="description" id="" cols="52" rows="10"><?= $product['description'] ?></textarea></td>
                 </tr>
                 <tr>
-                    <td>Đời xe</td>
-                </tr>
-                <tr>
-                    <td><input type="number" name="doi_xe" value="<?= $product['doi_xe'] ?>"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="loi">
-                            <?php if (isset($_SESSION['error_product']['doi_xe'])) : ?>
-                                <?= $_SESSION['error_product']['doi_xe'] ?>
-                            <?php endif ?>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Công xuất</td>
-                </tr>
-                <tr>
-                    <td><input type="number" name="cong_xuat" value="<?= $product['cong_xuat'] ?>"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="loi">
-                            <?php if (isset($_SESSION['error_product']['cong_xuat'])) : ?>
-                                <?= $_SESSION['error_product']['cong_xuat'] ?>
-                            <?php endif ?>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Màu</td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="color" value="<?= $product['color'] ?>"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="loi">
-                            <?php if (isset($_SESSION['error_product']['color'])) : ?>
-                                <?= $_SESSION['error_product']['color'] ?>
-                            <?php endif ?>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
                     <td>Số lượng</td>
                 </tr>
                 <tr>

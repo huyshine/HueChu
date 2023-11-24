@@ -9,8 +9,8 @@ if (isset($_POST['dangky'])) {
   dangky($username, $password, $repassword, $hovaten, $email, $sdt);
   if (!isset($_SESSION['errors']['img']) && !isset($_SESSION['errors']['username']) && !isset($_SESSION['errors']['password']) && !isset($_SESSION['errors']['repassword']) && !isset($_SESSION['errors']['hovaten']) && !isset($_SESSION['errors']['email']) && !isset($_SESSION['errors']['address']) && !isset($_SESSION['errors']['sdt'])) {
     $_SESSION['dangkythanhcong'] = "Đăng ký thành công";
-    header("location: index.php?act=vao_trang_dangnhap");
+    header("location: index.php?page=vao_trang_dangnhap");
   } else {
-    header("location: index.php?act=vao_trang_dangky");
+    header("location: index.php?page=vao_trang_dangky");
   }
 }

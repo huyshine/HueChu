@@ -12,10 +12,10 @@ if (isset($_POST['dangnhap'])) {
   }
   if (is_array($checkuser_vohieuhoa)) {
     $_SESSION['thongbao'] = "Tài khoản đã bị vô hiệu hóa";
-    header('location: index.php?act=vao_trang_dangnhap');
+    header('location: index.php?page=vao_trang_dangnhap');
   } else {
     $_SESSION['thongbao'] = "Tài khoản hoặc mật khẩu không đúng";
 
-    header('location: index.php?act=vao_trang_dangnhap');
+    header('location: index.php?page=vao_trang_dangnhap');
   }
 }

@@ -68,7 +68,7 @@ include("./view/client/sale.php");
                             <div class="product_layout_content bg-white position-relative">
                                 <div class="product_image_wrap">
                                     <a class="product_image d-flex justify-content-center align-items-center"
-                                        href="shop-list.html" target="_blank">
+                                        href="index.php?page=chi-tiet-san-pham" target="_blank">
                                         <img class="pic-1" src="./view/assets/images/product/product1.png"
                                             alt="image_not_found" />
                                         <img class="pic-2" src="./view/assets/images/product/product2.png"
@@ -108,7 +108,7 @@ include("./view/client/sale.php");
                                 </div>
                                 <div class="product_content">
                                     <h3 class="product_title">
-                                        <a href="shop-list.html" target="_blank">Organic Cabbage</a>
+                                        <a href="index.php?page=chi-tiet-san-pham" target="_blank">Organic Cabbage</a>
                                     </h3>
                                     <div class="product_price">
                                         <span class="sale_price pe-1">$50.00</span>

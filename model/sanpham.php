@@ -3,7 +3,7 @@ function showsp($kyw, $cate_id)
 {
     include '../ketnoi/ketnoi.php';
 
-    $sql = "SELECT product_id,quantity,product_name,price,img,img_2,img_3,img_4,doi_xe,cong_xuat,color,description,ngaynhap,categories.cate_id,categories.cate_name FROM products JOIN categories ON categories.cate_id = products.cate_id  ";
+    $sql = "SELECT product_id,quantity,product_name,price,img,img_2,img_3,img_4,description,ngaynhap,categories.cate_id,categories.cate_name FROM products JOIN categories ON categories.cate_id = products.cate_id  ";
     if ($kyw != "") {
         $sql .= " and product_name like '%" . $kyw . "%'";
     }
@@ -63,7 +63,7 @@ function chitiet_sp($id)
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
     return $product;
 }
-function addsp($product_name, $price, $description, $quantity, $doi_xe, $cong_xuat, $color, $cate_id, $total)
+function addsp($product_name, $price, $description, $quantity, $cate_id, $total)
 {
     include '../ketnoi/ketnoi.php';
     $error = [];
@@ -130,18 +130,9 @@ function addsp($product_name, $price, $description, $quantity, $doi_xe, $cong_xu
     } else if ($price <= 0) {
         $error['price'] = "Giá phải là số dương";
     }
-    if ($doi_xe == "") {
-        $error['doi_xe'] = "Bạn chưa nhập số lượng";
-    }
-    if ($cong_xuat == "") {
-        $error['cong_xuat'] = "Bạn chưa nhập số lượng";
-    }
-    if ($color == "") {
-        $error['color'] = "Bạn chưa nhập màu";
-    }
     $_SESSION['error_product'] = $error;
     if (!$error) {
-        $sql = "INSERT INTO products(product_name,price,img,img_2,img_3,img_4,description,doi_xe,cong_xuat,color,quantity,cate_id,ngaynhap) VALUES ('$product_name','$price','$img','$img2','$img3','$img4','$description','$doi_xe','$cong_xuat','$color',$quantity,' $cate_id',CURRENT_DATE-1)";
+        $sql = "INSERT INTO products(product_name,price,img,img_2,img_3,img_4,description,quantity,cate_id,ngaynhap) VALUES ('$product_name','$price','$img','$img2','$img3','$img4','$description',$quantity,' $cate_id',CURRENT_DATE-1)";
         // chuẩn bị
         $stmt = $conn->prepare($sql);
         //Thực thi
@@ -194,7 +185,7 @@ function editsp($id)
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
     return $product;
 }
-function updatesp($product_id, $product_name, $price, $total, $description, $doi_xe, $cong_xuat, $color, $quantity, $cate_id, $ngaynhap)
+function updatesp($product_id, $product_name, $price, $total, $description,$quantity, $cate_id, $ngaynhap)
 {
     include '../ketnoi/ketnoi.php';
 
@@ -230,15 +221,6 @@ function updatesp($product_id, $product_name, $price, $total, $description, $doi
     if ($product_name == "") {
         $error['product_name'] = "Bạn chưa nhập tên sản phẩm";
     }
-    if ($doi_xe == "") {
-        $error['doi_xe'] = "Bạn chưa nhập số lượng";
-    }
-    if ($cong_xuat == "") {
-        $error['cong_xuat'] = "Bạn chưa nhập số lượng";
-    }
-    if ($color == "") {
-        $error['color'] = "Bạn chưa nhập màu";
-    }
     if ($price == "") {
         $error['price'] = "Bạn chưa nhập giá sản phẩm";
     } else if ($price <= 0) {
@@ -246,7 +228,7 @@ function updatesp($product_id, $product_name, $price, $total, $description, $doi
     }
     $_SESSION['error_product'] = $error;
     if (!$error) {
-        $sql = "UPDATE  products SET product_id = '$product_id' , product_name = '$product_name' ,price = '$price',img = '$img',img_2 = '$img2',img_3 = '$img3',img_4 = '$img4',description = '$description',doi_xe = '$doi_xe',cong_xuat = '$cong_xuat',color = '$color',quantity = '$quantity' ,cate_id = ' $cate_id' ,ngaynhap= '$ngaynhap'  WHERE product_id = '$product_id'";
+        $sql = "UPDATE  products SET product_id = '$product_id' , product_name = '$product_name' ,price = '$price',img = '$img',img_2 = '$img2',img_3 = '$img3',img_4 = '$img4',description = '$description',quantity = '$quantity' ,cate_id = ' $cate_id' ,ngaynhap= '$ngaynhap'  WHERE product_id = '$product_id'";
         // chuẩn bị
         $stmt = $conn->prepare($sql);
         //Thực thi

@@ -1,4 +1,13 @@
 <?php
+session_start();
+// if (!isset($_SESSION['user'])) {
+//     header("location: ../index.php");
+// } else {
+//     extract($_SESSION['user']);
+//     if ($vaitro_id == 1) {
+//         header("location: ../index.php");
+//     }
+// }
 
 require_once '../ketnoi/ketnoi.php';
 require_once '../view/admin/header.php';
@@ -97,14 +106,9 @@ if (isset($_GET['act'])) {
                 $price = $_POST['price'];
                 $total = count($_FILES['img']['name']);
                 $description = $_POST['description'];
-                $doi_xe = $_POST['doi_xe'];
-                $cong_xuat = $_POST['cong_xuat'];
-                $color = $_POST['color'];
                 $quantity = $_POST['quantity'];
                 $cate_id = $_POST['cate_id'];
                 // $file4 = $_FILES[''];
-
-
                 // Loop through each file
                 for ($i = 0; $i < $total; $i++) {
 
@@ -122,7 +126,7 @@ if (isset($_GET['act'])) {
                 // $file3 = $image[2];
                 // $file4 = $image[3];
 
-                addsp($product_name, $price, $description, $quantity, $doi_xe, $cong_xuat, $color, $cate_id, $total);
+                addsp($product_name, $price, $description, $quantity, $cate_id, $total);
                 if (!isset($_SESSION['error_product']['img']) && !isset($_SESSION['error_product']['product_name']) && !isset($_SESSION['error_product']['price']) && !isset($_SESSION['error_product']['quantity'])) {
                     header("location: index.php?act=showsp");
                 }
@@ -166,9 +170,6 @@ if (isset($_GET['act'])) {
                 $quantity = $_POST['quantity'];
                 $cate_id = $_POST['cate_id'];
                 $total = count($_FILES['img']['name']);
-                $doi_xe = $_POST['doi_xe'];
-                $cong_xuat = $_POST['cong_xuat'];
-                $color = $_POST['color'];
                 for ($i = 0; $i < $total; $i++) {
 
                     //Get the temp file path
@@ -180,7 +181,7 @@ if (isset($_GET['act'])) {
                         $image[$i] = $_FILES['img']['name'][$i];
                     }
                 }
-                updatesp($product_id, $product_name, $price, $total, $description, $doi_xe, $cong_xuat, $color, $quantity, $cate_id, $ngaynhap);
+                updatesp($product_id, $product_name, $price, $total, $description, $quantity, $cate_id, $ngaynhap);
                 if (!isset($_SESSION['error_product']['img']) && !isset($_SESSION['error_product']['img2']) && !isset($_SESSION['error_product']['img3']) && !isset($_SESSION['error_product']['img4']) && !isset($_SESSION['error_product']['product_name']) && !isset($_SESSION['error_product']['price']) && !isset($_SESSION['error_product']['quantity'])) {
                     header("location: index.php?act=showsp");
                 } else {

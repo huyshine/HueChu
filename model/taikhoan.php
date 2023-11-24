@@ -23,18 +23,6 @@ function dangky($username, $password, $repassword, $hovaten, $email, $sdt)
 {
     include './ketnoi/ketnoi.php';
     $errors = [];
-    // if ($file['size'] > 0) {
-    //     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-    //     $ext = strtolower($ext);
-    //     if ($ext != "png" && $ext != "jpeg" && $ext != "jpg" && $ext != "gif") {
-    //         $errors['img'] = "Không đúng định dạnh ảnh";
-    //     } else {
-    //         $img = $file['name'];
-    //     }
-    // }
-    // else{
-    //     $errors['img'] = "Ảnh không được để trống";
-    // }
     if ($username == "") {
         $errors['username'] = "Bạn chưa nhập username";
     } else if ($username != " ") {

@@ -250,7 +250,7 @@
                                     <span class="input_number_increment">+</span>
                                 </form>
                             </div>
-                            <a href="#"><button type="button"
+                            <a href="index.php?page=gio-hang"><button type="button"
                                     class="btn custom_btn rounded-pill ms-3 px-5 py-3 text-white">Order Now <i
                                         class="fas fa-long-arrow-alt-right"></i></button></a>
                         </div>

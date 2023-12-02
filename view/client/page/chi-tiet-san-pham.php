@@ -1,5 +1,4 @@
 <main>
-
     <!-- sidebar section start -->
     <section class="sidebar_section">
         <div class="sidebar_content_wrap">
@@ -95,7 +94,9 @@
             style="background-image: url(./view/assets/images/breadcrumb/breadcrumb1.png);">
             <div class="breadcrumb_cont text-center">
                 <div class="breadcrumb_title">
-                    <h2 class="text-white">Product Details V.1</h2>
+                    <h2 class="text-white">
+                        <?php echo $product['product_name'] ?>
+                    </h2>
                 </div>
                 <ul class="list-unstyled breadcrumb_item d-flex justify-content-center align-items-center text-white">
                     <li><a href="index.html"><i class="fas fa-home active"></i>Home</a></li>
@@ -115,13 +116,13 @@
                     <div class="col-lg-6 position-relative">
                         <div
                             class="product10_thumb img_moving_anim1 position-relative d-flex justify-content-center align-items-center">
-                            <img src="./view/assets/images/product/product39.png" alt="image_not_found">
+                            <img src="./view/public/img/sanpham/<?php echo $product['img'] ?>" alt="image_not_found">
                             <div class="product10_back_thumb1 position-absolute">
                                 <img src="./view/assets/images/product/product13.png" alt="image_not_found">
                             </div>
-                            <div class="product10_back_thumb2 position-absolute">
-                                <img src="./view/assets/images/shapes/shape24.png" alt="image_not_found">
-                            </div>
+                            <!-- <div class="product10_back_thumb2 position-absolute">
+                                <img src="./view/public/img/sanpham/<?php echo $product['img'] ?>">
+                            </div> -->
                         </div>
                         <div class="row align-items-center sec_top_space_70">
                             <div class="col-lg-6">
@@ -141,26 +142,6 @@
                                     </div>
                                 </div>
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal3" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <iframe width="450" height="300"
-                                                    src="https://www.youtube.com/embed/UqyD2PgOw9Q" frameborder="0"
-                                                    allowfullscreen>
-                                                </iframe>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <h3 class="product10_title">How we Farm Organic Product</h3>
                             </div>
                         </div>
                     </div>
@@ -174,18 +155,19 @@
                                     <li class="active"><i class="fas fa-star"></i></li>
                                     <li><i class="far fa-star"></i></li>
                                 </ul>
-                                <a href="#!" class="review">Read 3 Reviews</a>
+                                <a href="#!" class="review">Reviews</a>
                             </div>
                             <div class="product_btn">
                                 <a href="#"><button type="button"
                                         class="btn custom_btn rounded-pill px-4 text-white">Smoothies</button></a>
                             </div>
                         </div>
-                        <h2 class="product_detail_title">Good Organic Products</h2>
-                        <p class="product_detail_desc py-2">Morbi eget congue lectus. Donec eleifend ultricies
-                            urna et euismod. Sed consectetur tellus eget odio aliquet, vel vestibulum tellus
-                            sollicitudin. Morbi maximus metus eu eros tincidunt, vitae mollis ante imperdiet.
-                            Nulla </p>
+                        <h2 class="product_detail_title">
+                            <?php echo $product['product_name'] ?>
+                        </h2>
+                        <p class="product_detail_desc py-2">
+                            <?php echo $product['description'] ?>
+                        </p>
                         <div class="row mt-5">
                             <div class="col-lg-4">
                                 <div class="product10_content_wrap">
@@ -243,19 +225,21 @@
                             </div>
                         </div>
                         <div class="product10_quantity_btn_wrap d-flex align-items-center">
-                            <div class="quantity_input">
+                            <!-- <div class="quantity_input">
                                 <form action="#">
+
                                     <span class="input_number_decrement">–</span>
                                     <input class="input_number" value="2KG">
                                     <span class="input_number_increment">+</span>
+                                
                                 </form>
-                            </div>
-                            <a href="index.php?page=gio-hang"><button type="button"
+                            </div> -->
+                            <a href="index.php?page=gio-hang&productId=<?php echo $product['product_id'] ?>"><button type="button"
                                     class="btn custom_btn rounded-pill ms-3 px-5 py-3 text-white">Order Now <i
                                         class="fas fa-long-arrow-alt-right"></i></button></a>
                         </div>
                         <div class="product_tags_wrap d-flex align-items-center mt-5">
-                            <h6 class="product_tags_title text-uppercase">tags:</h6>
+                            <h6 class="product_tags_title text-uppercase">tags:</h6>    
                             <div class="tags_item d-flex align-items-center">
                                 <a href="#!">T-shirt,</a>
                                 <a class="ms-1" href="#!">Clothes,</a>
@@ -312,20 +296,7 @@
                                 <div class="content_wrap">
                                     <h3 class="title_text mb_15">Description:</h3>
                                     <p class="mb_15">
-                                        Investigationes demonstraverunt lectores legere me lius quod ii legunt
-                                        saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem
-                                        consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc
-                                        putamus parum claram, anteposuerit litterarum formas humanitatis per
-                                        seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis
-                                        videntur parum clari, fiant sollemnes in futurum.
-                                    </p>
-                                    <p class="mb_15">
-                                        Investigationes demonstraverunt lectores legere me lius quod ii legunt
-                                        saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem
-                                        consuetudium lectorum.
-                                    </p>
-                                    <p class="mb-0">
-                                        Eodem modo typi, qui nunc nobis videntur parum clari.
+                                        <?php echo $product['description'] ?>
                                     </p>
                                 </div>
                             </div>

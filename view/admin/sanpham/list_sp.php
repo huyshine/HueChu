@@ -30,7 +30,7 @@
                         <td id="proid"><?= $product['product_id'] ?></td>
                         <td id="tensp"><?= $product['product_name'] ?></td>
                         <td id="gia"> <?= format_currency($product['price']) . " VNĐ" ?></td>
-                        <td><img class="" src="../view/public/img/car/<?= $product['img'] ?> " alt=""></td>
+                        <td><img class="" src="../view/public/img/sanpham/<?= $product['img'] ?> " alt=""></td>
                         <td id="description"><p class="w-[150px] text-ellipsis overflow-hidden whitespace-nowrap"><?= $product['description'] ?></p></td>
                         <td><?= $product['quantity'] ?></td>
                         <td><?= $product['cate_name'] ?></td>

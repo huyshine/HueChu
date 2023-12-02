@@ -1,5 +1,5 @@
 <?php
-function dathang($id_user, $yeucau, $id_product, $ngayxemxe, $caxemxe, $cosoxemxe)
+function dathang($name, $phone, $address, $user_id, $productId, $quantity)
 {
     include './ketnoi/ketnoi.php';
     $errors = [];
@@ -8,61 +8,43 @@ function dathang($id_user, $yeucau, $id_product, $ngayxemxe, $caxemxe, $cosoxemx
     // } else if (!filter_var(trim($email), FILTER_VALIDATE_EMAIL)) {
     //     $errors['email'] = "Email không đúng định dạng";
     // }
-    // if ($hovaten == "") {
-    //     $errors['hovaten'] = "Họ và tên không được để trống";
-    // }
-
-    // if ($tel == "") {
-    //     $errors['tel'] = "Số điện thoại không được để trống";
-    // }
-
-    if ($ngayxemxe == "") {
-        $errors['chonngay'] = "Ngày  không được để trống!";
+    if ($name == "") {
+        $errors['hovaten'] = "Họ và tên không được để trống";
     }
-
-    if ($caxemxe == "") {
-        $errors['chonthoigian'] = "Thời gian xem xe không được để trống!";
+    if ($address == "") {
+        $errors['address'] = "Họ và tên không được để trống";
     }
-    if ($cosoxemxe == "") {
-        $errors['chondiachi'] = "Cơ sở xem xe không được để trống!";
-    }
+    if ($phone == "") {
+        $errors['tel'] = "Số điện thoại không được để trống";
+    }  
+    echo "$productId";
 
-    $time_start = strtotime($ngayxemxe);
-    $time_now = strtotime(date("Y-m-d"));
 
-    if ($ngayxemxe != "" && $time_start < $time_now) {
-        $errors['chonngay'] = "Ngày bạn chọn đã trôi qua !";
-    }
-
-    // $sdt = '/0\d{9,10}/';
-    // if (!preg_match($sdt, $tel)) {
-    //     $errors['tel'] = "Số điện thoại không đúng định dạng";
-    // }
-
-    $_SESSION['errors_muahhang'] =  $errors;
+    $_SESSION['errors_muahhang'] = $errors;
     if (!$errors) {
         $sql = "INSERT INTO tbl_order
         (
             user_id,
-            yeucau,
             product_id,
-            ngayxemxe,
-            caxemxe,
-            co_so,
+            quantity,
+            address,
+            phone,
+            name,
             status_id
             ) 
         VALUES
         (
-            '$id_user',
-            '$yeucau',
-            '$id_product',
-            '$ngayxemxe',
-            '$caxemxe',
-            '$cosoxemxe',
+            '$user_id',
+            1,
+            '$quantity',
+            '$address',
+            '$phone',
+            '$name',
             1)
         ";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
+
         // if ($sql) {
         //     $last_id = $conn->lastInsertId();
         //     foreach ($_SESSION['cart'] as $cart) {
@@ -81,15 +63,12 @@ function dathang($id_user, $yeucau, $id_product, $ngayxemxe, $caxemxe, $cosoxemx
 function showdonhang_theo_user($user_id)
 {
     include './ketnoi/ketnoi.php';
-    $sql = "SELECT order_id,taikhoan.hovaten,taikhoan.email,taikhoan.tel,ngaydathang,product_id,ngayxemxe,caxemxe,co_so,
+    $sql = "SELECT order_id,taikhoan.hovaten,taikhoan.email,taikhoan.tel,ngayorder,
     tbl_order.status_id,order_status.status,
-    ca_xem_xe.name_caxem,
-    co_so.name_coso
     FROM tbl_order 
     JOIN taikhoan ON taikhoan.user_id = tbl_order.user_id 
     JOIN order_status ON order_status.status_id = tbl_order.status_id 
-    JOIN ca_xem_xe ON ca_xem_xe.caxem_id = tbl_order.caxemxe
-    JOIN co_so ON co_so.coso_id = tbl_order.co_so
+    JOIN products ON products.product_id = tbl_order.product_id
     WHERE tbl_order.user_id = '$user_id' order by ngaydathang DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();

@@ -39,7 +39,7 @@ function show_top3_sp()
 {
     include './ketnoi/ketnoi.php';
 
-    $sql = "SELECT * FROM products where 1 order by view desc limit 0,3";
+    $sql = "SELECT * FROM products where 1 order by price desc limit 0,3";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -57,7 +57,7 @@ function chitiet_sp($id)
 {
     include './ketnoi/ketnoi.php';
 
-    $sql = "SELECT * FROM products where  product_id = '$id'";
+    $sql = "SELECT product_id,quantity,product_name,price,img,img_2,img_3,img_4,description,ngaynhap,categories.cate_id,categories.cate_name  FROM products JOIN categories ON categories.cate_id = products.cate_id where  product_id = '$id'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -150,7 +150,7 @@ function addsp($product_name, $price, $description, $quantity, $cate_id, $total)
             if ($tmpFilePath != "") {
                 //Setup our new file path
                 $image = $_FILES['img']['name'][$i];
-                move_uploaded_file($tmpFilePath, '../view/public/img/car/' . $image);
+                move_uploaded_file($tmpFilePath, '../view/public/img/sanpham/' . $image);
             }
         }
 

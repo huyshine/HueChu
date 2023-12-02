@@ -43,6 +43,10 @@
 
     <!-- Include stylesheet CSS -->
     <link rel="stylesheet" href="./view/assets/css/style.css" />
+
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
 </head>
 
 <body>
@@ -216,26 +220,34 @@
                                             <!-- user profile start -->
                                             <div id="collapseExample" class="collapse_dropdown collapse">
                                                 <div class="dropdown_content">
-                                                    <div class="profile_info clearfix">
-                                                        <div class="user_thumbnail">
-                                                            <img src="./view/assets/images/meta/meta1.png"
-                                                                alt="image_not_found" />
-                                                        </div>
-                                                        <div class="user_content">
-                                                            <h4 class="user_name">Jone Doe</h4>
-                                                            <span class="user_title">Seller</span>
-                                                        </div>
-                                                    </div>
                                                     <ul class="settings_options ul_li_block clearfix">
-                                                        <li>
-                                                            <a href="#!"><i class="fas fa-user-circle"></i> Profile</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#!"><i class="fas fa-user-cog"></i> Settings</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#!"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                                                        </li>
+                                                        <?php if (isset($_SESSION['user'])) {
+                                                            extract($_SESSION['user']);
+                                                            ?>
+                                                            <div class="profile_info clearfix">
+                                                                <div class="user_thumbnail">
+                                                                    <img src="https://inkythuatso.com/uploads/thumbnails/800/2023/03/9-anh-dai-dien-trang-inkythuatso-03-15-27-03.jpg"
+                                                                        alt="image_not_found" />
+                                                                </div>
+                                                                <div class="user_content">
+                                                                    <h4 class="user_name">
+                                                                        <?= $hovaten ?>
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                            <?php if ($vaitro_id == 2): ?>
+                                                                <li><a href="admin/index.php">Trang quản trị</a></li>
+                                                            <?php endif ?>
+                                                            <li><a href="index.php?page=vao_trang_taikhoan">Tài khoản</a>
+                                                            </li>
+                                                            <li><a href="index.php?page=vao_trang_doimatkhau">Đổi mật
+                                                                    khẩu</a></li>
+                                                            <li><a href="index.php?page=dangxuat">Đăng xuất</a></li>
+                                                        <?php } else { ?>
+                                                            <li><a href="index.php?page=vao_trang_dangnhap">Đăng nhập</a>
+                                                            </li>
+                                                            <li><a href="index.php?page=vao_trang_dangky">Đăng ký</a></li>
+                                                        <?php } ?>
                                                     </ul>
                                                 </div>
                                             </div>

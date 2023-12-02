@@ -111,103 +111,77 @@
     <section class="cart_section sec_space_large" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
             <div class="cart_table table-responsive position-relative">
-                <table class="table align-middle">
-                    <thead class="text-uppercase">
-                        <tr>
-                            <th>photo</th>
-                            <th>product name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="cart_product position-relative">
-                                    <div class="item_image">
-                                        <img src="./view/assets/images/cart/cart1.png" alt="image_not_found">
+                <form action="index.php?page=update_cart" method="post" enctype="multipart/form-data">
+                    <table class="table align-middle">
+                        <thead class="text-uppercase">
+                            <tr>
+                                <th>Photo</th>
+                                <th>Product name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cart_product position-relative">
+                                        <div class="item_image">
+                                            <img src="./view/public/img/sanpham/<?php echo $product['img'] ?>"
+                                                alt="image_not_found">
+                                        </div>
+                                        <button type="button" class="remove_btn position-absolute">
+                                            <i class="fas fa-times"></i>
+                                        </button>
                                     </div>
-                                    <button type="button" class="remove_btn position-absolute">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="item_content">
-                                    <a href="shop-list.html">
-                                        <h4 class="item_title">Curated Products</h4>
-                                    </a>
-                                    <span class="item_type">Shop groceries</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="price_text">$69.00</span>
-                            </td>
-                            <td>
-                                <div class="quantity_input">
-                                    <form action="#">
-                                        <span class="input_number_decrement">–</span>
-                                        <input class="input_number" value="1">
-                                        <span class="input_number_increment">+</span>
-                                    </form>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="total_price">$138.00</span>
-                            </td>
-                        </tr>
-                        <!-- <tr>
-                            <td>
-                                <div class="cart_product position-relative">
-                                    <div class="item_image">
-                                        <img src="./view/assets/images/cart/cart2.png" alt="image_not_found">
+                                    <input type="text" name="productId" value="<?php echo $product['product_id'] ?>" style="display: none;">
+                                </td>
+                                <td>
+                                    <div class="item_content">
+                                        <a href="shop-list.html">
+                                            <h4 class="item_title">
+                                                <?php echo $product['product_name'] ?>
+                                            </h4>
+                                        </a>
+                                        <span class="item_type">
+                                            <?php echo $product['cate_name'] ?>
+                                        </span>
                                     </div>
-                                    <button type="button" class="remove_btn position-absolute">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="item_content">
-                                    <a href="shop-list.html">
-                                        <h4 class="item_title">Clean Business Card</h4>
-                                    </a>
-                                    <span class="item_type">Shop groceries</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="price_text">$23.00</span>
-                            </td>
-                            <td>
-                                <div class="quantity_input">
-                                    <form action="#">
+                                </td>
+                                <td>
+                                    <span class="price_text">
+                                        <?php echo $product['price'] ?> VNĐ
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="quantity_input">
                                         <span class="input_number_decrement">–</span>
-                                        <input class="input_number" value="1">
+                                        <input class="input_number" name="quantity" value="<?php echo $product['quantity'] ?>">
                                         <span class="input_number_increment">+</span>
-                                    </form>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="total_price">$138.00</span>
-                            </td>
-                        </tr> -->
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="coupon_wrap d-flex justify-content-between">
-                <div class="coupon_form d-flex align-items-center">
-                    <div class="form_item mb-0 me-5">
-                        <input type="text" class="coupon rounded-pill" placeholder="Coupon Code">
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="total_price"><?php echo $product['quantity']*$product['price'] ?> VNĐ</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 50px;" class="coupon_wrap d-flex justify-content-between">
+                        <!-- <div class="coupon_form d-flex align-items-center">
+                            <div class="form_item mb-0 me-5">
+                                <input type="text" class="coupon rounded-pill" placeholder="Coupon Code">
+                            </div>
+                            <button type="submit"
+                                class="btn btn_coupon custom_btn text-white rounded-pill py-2 py-sm-3 px-3 px-sm-5 text-uppercase">Apply
+                                Coupon</button>
+                        </div> -->
+                        <div></div>
+                        <button type="submit" name='update_cart'
+                            class="btn coupon_update_btn text-white rounded-pill py-2 py-sm-3 px-3 px-sm-5 text-uppercase">Update
+                            Cart</button>
                     </div>
-                    <button type="submit"
-                        class="btn btn_coupon custom_btn text-white rounded-pill py-2 py-sm-3 px-3 px-sm-5 text-uppercase">Apply
-                        Coupon</button>
-                </div>
-                <button type="button"
-                    class="btn coupon_update_btn text-white rounded-pill py-2 py-sm-3 px-3 px-sm-5 text-uppercase">Update
-                    Cart</button>
+                </form>
+
             </div>
 
             <div class="row justify-content-lg-end">
@@ -215,11 +189,16 @@
                     <div class="cart_pricing_table text-uppercase">
                         <h3 class="table_title text-center">Cart Total</h3>
                         <ul class="ul_li_block clearfix">
-                            <li><span>Subtotal</span> <span>$197.99</span></li>
-                            <li><span>Total</span> <span>$197.99</span></li>
+                            <li><span>Subtotal</span> <span>
+                                    <?php echo $product['price'] ?> VNĐ
+                                </span></li>
+                            <li><span>Total</span> <span>
+                                    <?php echo $product['price'] ?> VNĐ
+                                </span></li>
                         </ul>
                         <div class="btn_wrap pt-0 text-center">
-                            <a href="index.php?page=dat-hang" class="btn text-uppercase text-white rounded-pill">Proceed to
+                            <a href="index.php?page=dat-hang&productId=<?php echo $product['product_id'] ?>" class="btn text-uppercase text-white rounded-pill">Proceed
+                                to
                                 Checkout</a>
                         </div>
                     </div>

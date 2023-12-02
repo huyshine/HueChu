@@ -11,7 +11,7 @@ if (!isset($_SESSION['user'])) {
             </div>
         </div>
     </div>
-    <div class="flex flex-col mx-auto w-[50%] text-center">
+    <div  class="d-flex flex-column mx-auto text-center" style="width: 50%;">
             <div class="col-lg-6 w-full">
                 <div class="account-login-inner w-full">
                     <form class="w-full" action="index.php?act=doimatkhau" method="post">
@@ -102,6 +102,6 @@ if (!isset($_SESSION['user'])) {
                     ?>
                 </div>
             </div>
-        </div>
+        </divs>
     </div>
 </div>

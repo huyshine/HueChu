@@ -30,7 +30,7 @@
                         <td class="ten_input">Họ và tên</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input class="ten_input text-left pl-2" name="hovaten" type="text" value="<?= $user['hovaten'] ?>"></td>
+                        <td colspan="2"><input class="ten_input text-left pl-2" disabled name="hovaten" type="text" value="<?= $user['hovaten'] ?>"></td>
                     </tr>
                     <tr>
                         <td class="thongbao"><p style="color: red ;"><?php if (isset($_SESSION['errors']['hovaten'])) : ?>
@@ -43,7 +43,7 @@
                         <td class="ten_input">Email</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input class="ten_input text-left pl-2" name="email" type="text" value="<?= $user['email'] ?>"></td>
+                        <td colspan="2"><input class="ten_input text-left pl-2" name="email" type="text" disabled value="<?= $user['email'] ?>"></td>
                     </tr>
                     <tr>
                         <td class="thongbao"><p style="color: red ;"><?php if (isset($_SESSION['errors']['email'])) : ?>
@@ -68,7 +68,7 @@
                         <td class="ten_input">Số điện thoại</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input class="ten_input text-left pl-2" name="tel" type="text" value="<?= $user['tel'] ?>"></td>
+                        <td colspan="2"><input class="ten_input text-left pl-2" name="tel" disabled type="text" value="<?= $user['tel'] ?>"></td>
                     </tr>
                     <tr>
                         <td class="thongbao"><p style="color: red ;"><?php if (isset($_SESSION['errors']['sdt'])) : ?>
@@ -100,7 +100,7 @@
                     </tr>
 
                     <tr class="text-center">
-                        <td> <button class="theme-btn-2 btn btn-effect-2 border-[#e53e29] bg-[#e53e29]" type="submit" name="capnhattk" class="dk">Cập nhật</button></td>
+                        <!-- <td> <button class="theme-btn-2 btn btn-effect-2 border-[#e53e29] bg-[#e53e29]" type="submit" name="capnhattk" class="dk">Cập nhật</button></td> -->
 
                     </tr>
                 </table>

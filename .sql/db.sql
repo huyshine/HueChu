@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2023 lúc 05:38 AM
+-- Thời gian đã tạo: Th12 12, 2023 lúc 05:57 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.1.12
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `binhluan`
---
-
-CREATE TABLE `binhluan` (
-  `binhluan_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `noidung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `categories`
 --
 
@@ -52,7 +39,29 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`cate_id`, `cate_name`) VALUES
 (1, 'Táo'),
 (2, 'Dưa'),
-(3, 'Hồng');
+(3, 'Hồng'),
+(4, 'Lê');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `status_id` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_status`
+--
+
+INSERT INTO `order_status` (`status_id`, `status`) VALUES
+(1, 'Đã đặt'),
+(2, 'Đang giao hàng'),
+(3, 'Giao hàng thành công'),
+(4, 'Hủy đơn');
 
 -- --------------------------------------------------------
 
@@ -79,22 +88,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `price`, `img`, `img_2`, `img_3`, `img_4`, `description`, `quantity`, `cate_id`, `ngaynhap`) VALUES
-(1, 'Dưa hấu Mỹ', 20000, 'product(1).png', 'product.png', '', '', 'Sản phẩm tuyệt vời', 20, 2, '2023-11-24'),
-(2, 'Dưa Hấu 2 update', 300000, '', '', '', '', 'Test nha', 300, 2, '2023-11-24');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `rep`
---
-
-CREATE TABLE `rep` (
-  `rep_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `binhluan_id` int(11) NOT NULL,
-  `noidung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(1, 'Dưa hấu Mỹ', 20000, 'product(1).png', 'product.png', '', '', 'Sản phẩm tuyệt vời', 18, 2, '2023-11-24'),
+(2, 'Dưa Hấu 2 update', 300000, 'product(1).png', '', '', '', 'Test nha', 300, 2, '2023-11-24'),
+(3, 'Lê', 200000, 'pngtree-green-fruit-sydney-pear-png-image_376887.jpg', '', '', '', 'Lê ngon lắm !', 20, 4, '2023-12-06'),
+(4, 'Lê 2', 200000, 'pngtree-green-fruit-sydney-pear-png-image_376887.jpg', '', '', '', 'Lê ngon lắm !', 15, 4, '2023-12-06');
 
 -- --------------------------------------------------------
 
@@ -122,6 +119,59 @@ INSERT INTO `taikhoan` (`user_id`, `username`, `password`, `hovaten`, `email`, `
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_order`
+--
+
+CREATE TABLE `tbl_order` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` text NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `ngayorder` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_order`
+--
+
+INSERT INTO `tbl_order` (`order_id`, `user_id`, `status_id`, `address`, `phone`, `name`, `ngayorder`) VALUES
+(32, 2, 1, 'Trịnh Văn Bô', '0867435803', 'Huệ Chu', '2023-12-11 15:14:34'),
+(35, 2, 3, 'Hà Nội', '0867435803', 'Huệ Chu', '2023-12-12 04:22:32'),
+(36, 2, 1, 'Hà Nội', '0867435803', 'Huệ Chu', '2023-12-12 04:44:19');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_order_detail`
+--
+
+CREATE TABLE `tbl_order_detail` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_order_detail`
+--
+
+INSERT INTO `tbl_order_detail` (`order_id`, `product_id`, `quantity`) VALUES
+(26, 1, 2),
+(26, 2, 2),
+(27, 1, 5),
+(27, 3, 2),
+(28, 1, 4),
+(31, 1, 2),
+(32, 1, 2),
+(32, 3, 2),
+(35, 4, 3),
+(36, 4, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `vaitro`
 --
 
@@ -143,18 +193,16 @@ INSERT INTO `vaitro` (`vaitro_id`, `vaitro`) VALUES
 --
 
 --
--- Chỉ mục cho bảng `binhluan`
---
-ALTER TABLE `binhluan`
-  ADD PRIMARY KEY (`binhluan_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
 -- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`cate_id`);
+
+--
+-- Chỉ mục cho bảng `order_status`
+--
+ALTER TABLE `order_status`
+  ADD PRIMARY KEY (`status_id`);
 
 --
 -- Chỉ mục cho bảng `products`
@@ -164,20 +212,26 @@ ALTER TABLE `products`
   ADD KEY `cate_id` (`cate_id`);
 
 --
--- Chỉ mục cho bảng `rep`
---
-ALTER TABLE `rep`
-  ADD PRIMARY KEY (`rep_id`),
-  ADD KEY `id_user` (`user_id`),
-  ADD KEY `id_product` (`product_id`),
-  ADD KEY `id_binhluan` (`binhluan_id`);
-
---
 -- Chỉ mục cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`user_id`),
   ADD KEY `vaitro_id` (`vaitro_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `user` (`user_id`),
+  ADD KEY `status` (`status_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_order_detail`
+--
+ALTER TABLE `tbl_order_detail`
+  ADD KEY `Product_ID1` (`product_id`),
+  ADD KEY `ORDER_ID` (`order_id`);
 
 --
 -- Chỉ mục cho bảng `vaitro`
@@ -190,34 +244,34 @@ ALTER TABLE `vaitro`
 --
 
 --
--- AUTO_INCREMENT cho bảng `binhluan`
---
-ALTER TABLE `binhluan`
-  MODIFY `binhluan_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `order_status`
+--
+ALTER TABLE `order_status`
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT cho bảng `rep`
---
-ALTER TABLE `rep`
-  MODIFY `rep_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `vaitro`
@@ -230,31 +284,30 @@ ALTER TABLE `vaitro`
 --
 
 --
--- Các ràng buộc cho bảng `binhluan`
---
-ALTER TABLE `binhluan`
-  ADD CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `binhluan` (`binhluan_id`),
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `taikhoan` (`user_id`);
-
---
 -- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `cate_id` FOREIGN KEY (`cate_id`) REFERENCES `categories` (`cate_id`);
 
 --
--- Các ràng buộc cho bảng `rep`
---
-ALTER TABLE `rep`
-  ADD CONSTRAINT `id_binhluan` FOREIGN KEY (`binhluan_id`) REFERENCES `binhluan` (`binhluan_id`),
-  ADD CONSTRAINT `id_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
-  ADD CONSTRAINT `id_user` FOREIGN KEY (`user_id`) REFERENCES `taikhoan` (`user_id`);
-
---
 -- Các ràng buộc cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD CONSTRAINT `vaitro_id` FOREIGN KEY (`vaitro_id`) REFERENCES `vaitro` (`vaitro_id`);
+
+--
+-- Các ràng buộc cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD CONSTRAINT `status` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`),
+  ADD CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `taikhoan` (`user_id`);
+
+--
+-- Các ràng buộc cho bảng `tbl_order_detail`
+--
+ALTER TABLE `tbl_order_detail`
+  ADD CONSTRAINT `ORDER_ID` FOREIGN KEY (`order_id`) REFERENCES `tbl_order` (`order_id`),
+  ADD CONSTRAINT `Product_ID1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

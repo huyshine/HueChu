@@ -14,9 +14,16 @@ if (isset($_GET["page"])) {
     $page = $_GET["page"];
     switch ($page) {
         case "trang-chu":
-            $products = showsp_trangchu();
-            $categories = showdm_user();
-            $top3sp = show_top3_sp();
+            if (isset($_GET['iddm'])) {
+                $iddm = $_GET['iddm'];
+                $products = showsp_theodm($iddm);
+                $categories = showdm_user();
+                $top3sp = show_top3_sp();
+            } else {
+                $products = showsp_trangchu();
+                $categories = showdm_user();
+                // $top3sp = show_top3_sp();
+            }
             include("./view/client/page/trang-chu.php");
             break;
         case "gioi-thieu":
@@ -29,6 +36,9 @@ if (isset($_GET["page"])) {
                 $products = showsp_theodm($iddm);
                 $categories = showdm_user();
                 $top3sp = show_top3_sp();
+            } else {
+                $products = showsp_trangchu();
+                $categories = showdm_user();
             }
             include("./view/client/page/san-pham.php");
             break;
@@ -37,91 +47,106 @@ if (isset($_GET["page"])) {
                 if (isset($_GET['iddm'])) {
                     $id = $_GET['id'];
                     $iddm = $_GET['iddm'];
-                    if (isset($_GET['so_sanpham_tren1trang'])) {
-                        $so_sanpham_tren1trang = $_GET['so_sanpham_tren1trang'];
-                    } else {
-                        $so_sanpham_tren1trang = 4;
-                    }
-                    if (isset($_GET['trang'])) {
-                        $trang = $_GET['trang'];
-                    } else {
-                        $trang = 1;
-                    }
-                    //   $so_binhluan = dem_binh_luan_theo_sanpham($id);
-                    //   $binhluan = show_binhluan($id, $so_sanpham_tren1trang, $trang);
-                    $sotrang = sotrang($id, $so_sanpham_tren1trang);
                     $product = chitiet_sp($id);
                     //   $reps = show_rep($id);
                     $products_lienquan = sanpham_lienquan($id, $iddm);
                     $top3sp = show_top3_sp();
                 }
             }
-
-            if (isset($_GET['iddm'])) {
-                $iddm = $_GET['iddm'];
-                $products = showsp_theodm($iddm);
-                $categories = showdm_user();
-                $top3sp = show_top3_sp();
-            }
-
+            // if (isset($_GET['iddm'])) {
+            //     $iddm = $_GET['iddm'];
+            //     $products = showsp_theodm($iddm);
+            //     $categories = showdm_user();
+            //     $top3sp = show_top3_sp();
+            // }
             include("./view/client/page/chi-tiet-san-pham.php");
-            unset($_SESSION['thongbaobinhluan']);
-
-            // include './controller/binhluan/guibinhluan.php';
             break;
-        case "lien-he":
-            include("./view/client/page/lien-he.php");
-            break;
-        case "gio-hang":
+        case "add-cart":
             if (isset($_GET['productId'])) {
                 $productId = $_GET['productId'];
                 $product = chitiet_sp($productId);
-
+                $quantity = $_POST['quantity'];
+                // Check if the product is already in the cart
                 if (isset($_SESSION['cart'][$productId])) {
-                    $product['quantity'] = $_SESSION['cart'][$productId]['quantity'];
+                    // Product is in the cart, increase quantity
+                    $_SESSION['cart'][$productId]['quantity'] += $quantity;
                 } else {
-                    $product['quantity'] = 1;
+                    // Product is not in the cart, add it
+                    $_SESSION['cart'][$productId] = array(
+                        'id' => $product['product_id'],
+                        'name' => $product['product_name'],
+                        'img' => $product['img'],
+                        'price' => $product['price'],
+                        'quantity' => (int) $quantity
+                    );
                 }
             }
-            include("./view/client/page/gio-hang.php");
+            header('location: index.php?page=gio-hang');
+            break;
+        case 'remove_cart':
+            if (isset($_POST['remove_cart'])) {
+                $productId = $_POST['productId'];
+                unset($_SESSION['cart'][$productId]);
+            }
+            header('location: index.php?page=gio-hang');
+            break;
+        case "gio-hang":
+            if (!empty($_SESSION['cart'])) {
+                include("./view/client/page/gio-hang.php");
+                // $products = $_SESSION['cart'];
+            } else {
+                echo "<div style='margin:100px 0px  ; font-size: 20px; text-align: center;'>Giỏ hàng của bạn trống</div>";
+            }
+            ;
             break;
         case "update_cart":
             if (isset($_POST['update_cart'])) {
                 $quantity = $_POST['quantity'];
                 $productId = $_POST['productId'];
                 $product = chitiet_sp($productId);
-                $product['quantity'] = $quantity;
-                $_SESSION['cart'][$productId] = $product;
+                $_SESSION['cart'][$productId]['quantity'] = $quantity;
                 // echo "$quantity  và $productId";
+                echo "<script>alert('Cập nhật thành công')</script>";
+            }
+            if (isset($_POST['remove_cart'])) {
+                $productId = $_POST['productId'];
+                unset($_SESSION['cart'][$productId]);
+                echo "<script>alert('Xóa thành công')</script>";
             }
             include("./view/client/page/gio-hang.php");
             break;
         case "dat-hang":
-            if (isset($_GET['productId'])) {
-                $productId = $_GET['productId'];
-                $user_id = $_SESSION['user']['user_id'];
-                $product = chitiet_sp($productId);
-                $quantity = $_SESSION['cart'][$productId]['quantity'];
-                $total = $product['price'] * $quantity;
-            }
-
+            $products = $_SESSION['cart'];
             include("./view/client/page/dat-hang.php");
             break;
         case "gui-dat-hang":
             if (isset($_POST['order'])) {
-                if (isset($_GET['productId'])) {
-                    $productId = $_GET['productId'];
-                    $user_id = $_SESSION['user']['user_id'];
-                    $quantity = $_SESSION['cart'][$productId]['quantity'];
-                    $name = $_POST['name'];
-                    $phone = $_POST['phone'];
-                    $address = $_POST['address'];
-                    // echo $user_id . ' ' . $productId . ' ' . $quantity . ' ' . $name . ' ' . $phone . ' ' . $address;
-                    dathang($name, $phone, $address, $user_id, $productId, $quantity);
-                }
+                $user_id = $_SESSION['user']['user_id'];
+                $name = $_POST['name'];
+                $phone = $_POST['phone'];
+                $address = $_POST['address'];
+                dathang($name, $phone, $address, $user_id);
+                echo '<script>alert("Đặt hàng thành công")</script>';
             }
-            // echo 'fail';
-            // include("./view/client/page/trang-chu.php");
+            header('location: index.php?page=thank');
+            break;
+        case "thank":
+            include("./view/client/page/thank.php");
+            break;
+        case "don-hang":
+            if (isset($_SESSION['user']['user_id'])) {
+                $user_id = $_SESSION['user']['user_id'];
+                $my_order = showdonhang_theo_user($user_id);
+                // $order_detail = show_chitiet_order($my_order['order_id']);
+            }
+            include("./view/client/page/order.php");
+            break;
+        case "chi-tiet-don-hang":
+            if (isset($_GET['id_order'])) {
+                $order_id = $_GET['id_order'];
+                $order_detail = show_chitiet_order($order_id);
+            }
+            include("./view/client/page/order-detail.php");
             break;
         case "nguoi-ban":
             include("./view/client/page/nguoi-ban.php");
@@ -132,19 +157,36 @@ if (isset($_GET["page"])) {
         case "so-sanh":
             include("./view/client/page/so-sanh.php");
             break;
-        case "chi-tiet-san-pham":
-            include("./view/client/page/chi-tiet-san-pham.php");
+        case "lien-he":
+            include("./view/client/page/lien-he.php");
             break;
-
         case 'vao_trang_dangnhap':
             include_once './view/client/taikhoan/login.php';
-            include_once './controller/taikhoan/vao_trang_dangnhap.php';
+            unset($_SESSION['dangkythanhcong']);
+            $_SESSION['thongbao'] = " ";
             break;
         case 'vao_trang_dangky':
             include_once './view/client/taikhoan/sign_up.php';
             break;
         case 'dangnhap':
-            include_once './controller/taikhoan/dangnhap.php';
+            if (isset($_POST['dangnhap'])) {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                $checkuser = checkuser($username, $password);
+                $checkuser_vohieuhoa = checkuser_vohieuhoa($username, $password);
+                if (is_array($checkuser)) {
+                    $_SESSION['user'] = $checkuser;
+                    header('location: index.php');
+                }
+                if (is_array($checkuser_vohieuhoa)) {
+                    $_SESSION['thongbao'] = "Tài khoản đã bị vô hiệu hóa";
+                    header('location: index.php?page=vao_trang_dangnhap');
+                } else {
+                    $_SESSION['thongbao'] = "Tài khoản hoặc mật khẩu không đúng";
+
+                    header('location: index.php?page=vao_trang_dangnhap');
+                }
+            }
             break;
         case 'dangkytk':
             if (isset($_POST['dangky'])) {
@@ -164,14 +206,22 @@ if (isset($_GET["page"])) {
             }
             break;
         case 'dangxuat':
-            include './controller/taikhoan/dangxuat.php';
+            session_unset();
+            header('location: index.php');
             break;
         case 'vao_trang_quenmk':
             include_once './view/client/taikhoan/forget_password.php';
             break;
 
         case 'quen_mat_khau':
-            include './controller/taikhoan/quen_mat_khau.php';
+            if (isset($_POST['gui'])) {
+                $email = $_POST['email'];
+                $username = $_POST['username'];
+
+                if (!isset($_SESSION['errors']['username']) && !isset($_SESSION['errors']['email'])) {
+                    quenmatkhau($email, $username);
+                }
+            }
             include './view/client/taikhoan/forget_password.php';
             break;
         case 'vao_trang_doimatkhau':
@@ -180,9 +230,19 @@ if (isset($_GET["page"])) {
 
             break;
         case 'doimatkhau':
-
-            include './controller/taikhoan/doimatkhau.php';
-
+            if (isset($_POST['xacnhandoimk'])) {
+                $username = $_POST['username'];
+                $old_password = $_POST['old_password'];
+                $new_password = $_POST['new_password'];
+                $re_new_password = $_POST['re_new_password'];
+                doimatkhau($username, $old_password, $new_password, $re_new_password);
+                if (!isset($_SESSION['error_doimk']['username']) && !isset($_SESSION['error_doimk']['old_password']) && !isset($_SESSION['error_doimk']['new_password']) && !isset($_SESSION['error_doimk']['re_new_password'])) {
+                    $_SESSION['doimatkhau_thanhcong'] = "Đổi mật khẩu thành công";
+                    header("location: index.php?page=vao_trang_doimatkhau");
+                } else {
+                    header("location: index.php?page=vao_trang_doimatkhau");
+                }
+            }
             break;
         case 'vao_trang_taikhoan':
 
@@ -194,9 +254,21 @@ if (isset($_GET["page"])) {
 
             break;
         case 'capnhat_tk';
-
-            include './controller/taikhoan/capnhat_tk.php';
-
+            if (isset($_POST['capnhattk'])) {
+                $user_id = $_POST['user_id'];
+                $hovaten = $_POST['hovaten'];
+                $email = $_POST['email'];
+                $tel = $_POST['tel'];
+                // $address = $_POST['address'];
+                // $ngaydangky = $_POST['ngaydangky'];
+                capnhat_tk($user_id, $hovaten, $email, $tel);
+                if (!isset($_SESSION['errors']['hovaten']) && !isset($_SESSION['errors']['email']) && !isset($_SESSION['errors']['sdt'])) {
+                    $_SESSION['capnhatthanhcong'] = "Cập nhật tài khoản thành công";
+                    header("location: index.php?page=vao_trang_taikhoan");
+                } else {
+                    header("location: index.php?page=vao_trang_taikhoan");
+                }
+            }
             break;
         default:
             $products = showsp_trangchu();
@@ -205,6 +277,8 @@ if (isset($_GET["page"])) {
             include("./view/client/page/trang-chu.php");
     }
 } else {
+    $products = showsp_trangchu();
+    $categories = showdm_user();
     include("./view/client/page/trang-chu.php");
 }
 

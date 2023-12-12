@@ -32,11 +32,8 @@
                     <th>Người nhận hàng</th>
                     <th>Email</th>
                     <th>Số điện thoại</th>
-                    <th>Ngày xem</th>
-                    <th>Thời gian</th>
-                    <th>Cơ sở</th>
+                    <th>Ngày đặt</th>
                     <th colspan="2">Trạng thái</th>
-                    <th>Trạng thái lịch</th>
                     <th>Chức năng</th>
                 </tr>
             </thead>
@@ -61,24 +58,14 @@
                             <?= $order['tel'] ?>
                         </td>
                         <td>
-                            <?= $order['ngayxemxe'] ?>
-                        </td>
-                        <td>
-                            <p class="w-[50px] text-ellipsis overflow-hidden">
-                                <?= $order['name_caxem'] ?>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="w-[150px] text-ellipsis overflow-hidden whitespace-nowrap">
-                                <?= $order['name_coso'] ?>
-                            </p>
+                            <?= $order['ngayorder'] ?>
                         </td>
                         <?php $count++; ?>
                         <form class="donhang" action="index.php?act=capnhat_donhang" method="post">
                             <input name="order_id" type="hidden" value="<?= $order['order_id'] ?>">
-                            <input type="hidden" name="ngaydathang" value="<?= $order['ngaydathang'] ?>">
+                            <input type="hidden" name="ngayorder" value="<?= $order['ngayorder'] ?>">
                             <!-- <input type="hidden" name="tong" value="<?= $order['tong'] ?>"> -->
-                            <td><select <?= ($order['status_id'] == 3 || $order['status_id'] == 5) ? 'disabled' : "" ?>
+                            <td><select <?= ($order['status_id'] == 3 || $order['status_id'] == 4) ? 'disabled' : "" ?>
                                     name="trangtdh" class="trangthaidonhang"
                                     onchange="trangthai(<?= $count ?>,<?= $order['status_id'] ?>)">
                                     <?php foreach ($status as $value): ?>
@@ -89,9 +76,6 @@
                                 </select></td>
                             <td><button class="btn_donhang border-[#e53e29] bg-[#e53e29] hover:opacity-[0.7] text-white"
                                     name="btn_capnhat_donhang" type="submit">Cập nhật</button></td>
-                            <td><button><a href="index.php?act=huy_lich&order_id=<?= $order['order_id'] ?>"
-                                        onclick="return confirm('Bạn có chắc chắn muốn hủy lịch hẹn này này không ?')">Huỷ
-                                        đơn</a></button></td>
                             <td><button
                                     class=" border-[#e53e29] bg-[#e53e29] hover:opacity-[0.7] text-[white] py-1 px-2 text-[15px] rounded-md"><a
                                         href="index.php?act=chitiet_donhang&order_id=<?= $order['order_id'] ?>">Chi

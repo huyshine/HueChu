@@ -19,7 +19,7 @@ function showsp($kyw, $cate_id)
 function showsp_theodm($cate_id)
 {
     include './ketnoi/ketnoi.php';
-    $sql = "SELECT * from products  where cate_id = '$cate_id'  ";
+    $sql = "SELECT product_id,quantity,product_name,price,img,img_2,img_3,img_4,description,ngaynhap,categories.cate_id,categories.cate_name FROM products JOIN categories ON categories.cate_id = products.cate_id where products.cate_id = '$cate_id'  ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ function showsp_trangchu()
 {
     include './ketnoi/ketnoi.php';
 
-    $sql = "SELECT * FROM products  order by ngaynhap desc limit 9 ";
+    $sql = "SELECT product_id,quantity,product_name,price,img,img_2,img_3,img_4,description,ngaynhap,categories.cate_id,categories.cate_name FROM products JOIN categories ON categories.cate_id = products.cate_id   order by ngaynhap desc limit 9 ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -250,7 +250,7 @@ function updatesp($product_id, $product_name, $price, $total, $description,$quan
 function sanpham_lienquan($id, $iddm)
 {
     include './ketnoi/ketnoi.php';
-    $sql = " SELECT * FROM products WHERE cate_id = '$iddm' AND product_id != '$id' order by RAND() limit 4";
+    $sql = "SELECT product_id,quantity,product_name,price,img,img_2,img_3,img_4,description,ngaynhap,categories.cate_id,categories.cate_name FROM products JOIN categories ON categories.cate_id = products.cate_id WHERE products.cate_id = '$iddm' AND product_id != '$id' order by RAND() limit 4";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $products_lienquan = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -268,19 +268,10 @@ function timsp($kyw)
 function sanpham_xemnhieunhat()
 {
     include '../ketnoi/ketnoi.php';
-    $sql = " SELECT * FROM products order by view desc limit 3   ";
+    $sql = " SELECT * FROM products order by quantity desc limit 3   ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $product_top1_view = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $product_top1_view;
 }
-function sanphamdcbinhluannhieu()
-{
 
-    include '../ketnoi/ketnoi.php';
-    $sql = " SELECT * , COUNT(binhluan.product_id) as 'sobinhluan' FROM products JOIN binhluan ON binhluan.product_id= products.product_id GROUP BY products.product_name order by sobinhluan  DESC LIMIT 5 ";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $psanphamdcbinhluannhieu = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $psanphamdcbinhluannhieu;
-}

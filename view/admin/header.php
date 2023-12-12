@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Organic - Food</title>
+    <link rel="shortcut icon" href="../view/assets/images/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../view/public/css/admin.css">
     <!-- <link rel="stylesheet" href="../view/public/icon/fontawesome-free-6.2.0/css/all.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -38,7 +39,6 @@
                 <li><a href="index.php?act=showdm"><i class="fa-solid fa-bars"></i> Danh mục</a></li>
                 <li><a href="index.php?act=showsp"><i class="fa-solid fa-box"></i> Sản phẩm</a></li>
                 <li><a href="index.php?act=showuser"><i class="fa-solid fa-user"></i> Tài khoản</a></li>
-                <li><a href="index.php?act=showcommemt"><i class="fa-solid fa-comment"></i> Bình luận</a></li>
                 <li><a href="index.php?act=showdonhangadmin"><i class="fa-solid fa-file-invoice-dollar"></i>Đặt hàng</a></li>
             </ul>
         </div>
@@ -57,9 +57,7 @@
                             </a>
 
                             <ul>
-                                <li><a href="../index.php?act=vao_trang_taikhoan">Thông tin tài khoản</a></li>
-                                <li><a href="../index.php?act=vao_trang_doimatkhau">Đổi mật khẩu</a></li>
-                                <!-- <li><a href="../index.php?act=vao_donhang">Đơn hàng của tôi</a></li> -->
+                                <li><a href="../index.php?page=vao_trang_taikhoan">Thông tin tài khoản</a></li>
                                 <li><a href="../index.php">Trang chủ website</a></li>
                                 <li><a href="../index.php?act=dangxuat">Đăng xuất</a></li>
                             </ul>

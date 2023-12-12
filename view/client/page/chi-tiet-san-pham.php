@@ -224,22 +224,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product10_quantity_btn_wrap d-flex align-items-center">
-                            <!-- <div class="quantity_input">
-                                <form action="#">
-
+                        <form action="index.php?page=add-cart&productId=<?php echo $product['product_id'] ?>"
+                            method="post" class="product10_quantity_btn_wrap d-flex align-items-center">
+                            <div class="quantity_input">
+                                <div>
                                     <span class="input_number_decrement">–</span>
-                                    <input class="input_number" value="2KG">
+                                    <input class="input_number" name='quantity' min="1" value="2">
                                     <span class="input_number_increment">+</span>
-                                
-                                </form>
-                            </div> -->
-                            <a href="index.php?page=gio-hang&productId=<?php echo $product['product_id'] ?>"><button type="button"
-                                    class="btn custom_btn rounded-pill ms-3 px-5 py-3 text-white">Order Now <i
-                                        class="fas fa-long-arrow-alt-right"></i></button></a>
-                        </div>
+                                </div>
+                            </div>
+                            <?php
+                            if ($product['quantity'] === 0) { ?>
+                                <button class="btn custom_btn rounded-pill ms-3 px-5 py-3 text-white">Hết hàng</button>
+                            <?php } else {
+                                if (!isset($_SESSION['user'])) { ?>
+                                    <a href="index.php?page=vao_trang_dangnhap"
+                                        class="btn custom_btn rounded-pill ms-3 px-5 py-3 text-white">Order Now <i
+                                            class="fas fa-long-arrow-alt-right"></i></a>
+                                <?php } else { ?>
+                                    <button type="submit" name="add_cart"
+                                        class="btn custom_btn rounded-pill ms-3 px-5 py-3 text-white">Order Now <i
+                                            class="fas fa-long-arrow-alt-right"></i></button>
+                                <?php }
+                            }
+                            ?>
+                        </form>
                         <div class="product_tags_wrap d-flex align-items-center mt-5">
-                            <h6 class="product_tags_title text-uppercase">tags:</h6>    
+                            <h6 class="product_tags_title text-uppercase">tags:</h6>
                             <div class="tags_item d-flex align-items-center">
                                 <a href="#!">T-shirt,</a>
                                 <a class="ms-1" href="#!">Clothes,</a>
@@ -437,9 +448,9 @@
                             <i class="far fa-circle"></i>
                             <i class="far fa-circle"></i>
                             <i class="far fa-circle"></i>
-                            <span>FRESH FROM OUR FARM</span>
+                            <span>Hoa quả</span>
                         </div>
-                        <h2 class="product_sec_title pb-3">Popular Organic Discount</h2>
+                        <h2 class="product_sec_title pb-3">Các sản phẩm liên quan</h2>
                     </div>
                 </div>
                 <div class="col-lg-6 ul_li_right">
@@ -448,202 +459,66 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-sm-6 col-lg-3">
-                    <div class="product_layout_1 overflow-hidden position-relative">
-                        <div class="product_layout_content bg-white position-relative">
-                            <div class="product_image_wrap">
-                                <a class="product_image d-flex justify-content-center align-items-center"
-                                    href="product-detail.html">
-                                    <img class="pic-1" src="./view/assets/images/product/product9.png"
-                                        alt="image_not_found">
-                                    <img class="pic-2" src="./view/assets/images/product/product5.png"
-                                        alt="image_not_found">
-                                </a>
-                                <ul class="product_badge_group ul_li_block">
-                                    <li><span
-                                            class="product_badge badge_meats position-absolute rounded-pill text-uppercase">Meats</span>
-                                    </li>
-                                    <li><span
-                                            class="product_badge badge_discount position-absolute rounded-pill">-27%</span>
-                                    </li>
-                                </ul>
-                                <ul class="product_action_btns ul_li_block d-flex">
-                                    <li><a class="tooltips" data-placement="top" title="Search Product" href="#!"><i
-                                                class="fas fa-search"></i></a></li>
-                                    <li><a class="tooltips" data-placement="top" title="Add To Cart"
-                                            href="#product_quick_view" data-bs-toggle="modal"><i
-                                                class="fas fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="rating_wrap d-flex">
-                                <ul class="rating_star ul_li">
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li><i class="far fa-star"></i></li>
-                                </ul>
-                                <span class="shop_review_text">( 4.0 )</span>
-                            </div>
-                            <div class="product_content">
-                                <h3 class="product_title">
-                                    <a href="product-detail.html">Organic Cabbage</a>
-                                </h3>
-                                <div class="product_price">
-                                    <span class="sale_price pe-1">$50.00</span>
-                                    <del>$65.00</del>
+                <?php foreach ($products_lienquan as $product): ?>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="product_layout_1 overflow-hidden position-relative">
+                            <div class="product_layout_content bg-white position-relative">
+                                <div class="product_image_wrap">
+                                    <a class="product_image d-flex justify-content-center align-items-center"
+                                        href="index.php?page=chitiet_sanpham&id=<?= $product['product_id'] ?>&iddm=<?= $product['cate_id'] ?>">
+                                        <img class="pic-1" src="./view/public/img/sanpham/<?php echo $product['img'] ?>"
+                                            alt="image_not_found">
+                                        <img class="pic-2" src="./view/public/img/sanpham/<?php echo $product['img'] ?>"
+                                            alt="image_not_found">
+                                    </a>
+                                    <ul class="product_badge_group ul_li_block">
+                                        <li><span
+                                                class="product_badge badge_meats position-absolute rounded-pill text-uppercase">
+                                                <?php echo $product['cate_name'] ?>
+                                            </span>
+                                        </li>
+                                        <!-- <li><span
+                                                class="product_badge badge_discount position-absolute rounded-pill">-27%</span>
+                                        </li> -->
+                                    </ul>
+                                    <ul class="product_action_btns ul_li_block d-flex">
+                                        <li><a class="tooltips" data-placement="top" title="Search Product"
+                                                href="index.php?page=chitiet_sanpham&id=<?= $product['product_id'] ?>&iddm=<?= $product['cate_id'] ?>"><i
+                                                    class="fas fa-search"></i></a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Cart"
+                                                href="index.php?page=chitiet_sanpham&id=<?= $product['product_id'] ?>&iddm=<?= $product['cate_id'] ?>"
+                                                data-bs-toggle="modal"><i class="fas fa-shopping-bag"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="rating_wrap d-flex">
+                                    <ul class="rating_star ul_li">
+                                        <li class="active"><i class="fas fa-star"></i></li>
+                                        <li class="active"><i class="fas fa-star"></i></li>
+                                        <li class="active"><i class="fas fa-star"></i></li>
+                                        <li class="active"><i class="fas fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                    <span class="shop_review_text">( 4.0 )</span>
+                                </div>
+                                <div class="product_content">
+                                    <h3 class="product_title">
+                                        <a
+                                            href="index.php?page=chitiet_sanpham&id=<?= $product['product_id'] ?>&iddm=<?= $product['cate_id'] ?>">
+                                            <?php echo $product['product_name'] ?>
+                                        </a>
+                                    </h3>
+                                    <div class="product_price">
+                                        <span class="sale_price pe-1">
+                                            <?php echo $product['price'] ?>
+                                        </span>
+                                        <!-- <del>$65.00</del> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="product_layout_1 overflow-hidden position-relative">
-                        <div class="product_layout_content bg-white position-relative">
-                            <div class="product_image_wrap">
-                                <a class="product_image d-flex justify-content-center align-items-center"
-                                    href="product-detail.html">
-                                    <img class="pic-1" src="./view/assets/images/product/product10.png"
-                                        alt="image_not_found">
-                                    <img class="pic-2" src="./view/assets/images/product/product3.png"
-                                        alt="image_not_found">
-                                </a>
-                                <ul class="product_badge_group ul_li_block">
-                                    <li><span
-                                            class="product_badge badge_meats position-absolute rounded-pill text-uppercase">Meats</span>
-                                    </li>
-                                    <li><span
-                                            class="product_badge badge_discount position-absolute rounded-pill">-27%</span>
-                                    </li>
-                                </ul>
-                                <ul class="product_action_btns ul_li_block d-flex">
-                                    <li><a class="tooltips" data-placement="top" title="Search Product" href="#!"><i
-                                                class="fas fa-search"></i></a></li>
-                                    <li><a class="tooltips" data-placement="top" title="Add To Cart"
-                                            href="#product_quick_view" data-bs-toggle="modal"><i
-                                                class="fas fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="rating_wrap d-flex">
-                                <ul class="rating_star ul_li">
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li><i class="far fa-star"></i></li>
-                                </ul>
-                                <span class="shop_review_text">( 4.0 )</span>
-                            </div>
-                            <div class="product_content">
-                                <h3 class="product_title">
-                                    <a href="product-detail.html">Organic Cabbage</a>
-                                </h3>
-                                <div class="product_price">
-                                    <span class="sale_price pe-1">$50.00</span>
-                                    <del>$65.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="product_layout_1 overflow-hidden position-relative">
-                        <div class="product_layout_content bg-white position-relative">
-                            <div class="product_image_wrap">
-                                <a class="product_image d-flex justify-content-center align-items-center"
-                                    href="product-detail.html">
-                                    <img class="pic-1" src="./view/assets/images/product/product11.png"
-                                        alt="image_not_found">
-                                    <img class="pic-2" src="./view/assets/images/product/product8.png"
-                                        alt="image_not_found">
-                                </a>
-                                <ul class="product_badge_group ul_li_block">
-                                    <li><span
-                                            class="product_badge badge_meats position-absolute rounded-pill text-uppercase">Meats</span>
-                                    </li>
-                                    <li><span
-                                            class="product_badge badge_discount position-absolute rounded-pill">-27%</span>
-                                    </li>
-                                </ul>
-                                <ul class="product_action_btns ul_li_block d-flex">
-                                    <li><a class="tooltips" data-placement="top" title="Search Product" href="#!"><i
-                                                class="fas fa-search"></i></a></li>
-                                    <li><a class="tooltips" data-placement="top" title="Add To Cart"
-                                            href="#product_quick_view" data-bs-toggle="modal"><i
-                                                class="fas fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="rating_wrap d-flex">
-                                <ul class="rating_star ul_li">
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li><i class="far fa-star"></i></li>
-                                </ul>
-                                <span class="shop_review_text">( 4.0 )</span>
-                            </div>
-                            <div class="product_content">
-                                <h3 class="product_title">
-                                    <a href="product-detail.html">Organic Cabbage</a>
-                                </h3>
-                                <div class="product_price">
-                                    <span class="sale_price pe-1">$50.00</span>
-                                    <del>$65.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="product_layout_1 overflow-hidden position-relative">
-                        <div class="product_layout_content bg-white position-relative">
-                            <div class="product_image_wrap">
-                                <a class="product_image d-flex justify-content-center align-items-center"
-                                    href="product-detail.html">
-                                    <img class="pic-1" src="./view/assets/images/product/product12.png"
-                                        alt="image_not_found">
-                                    <img class="pic-2" src="./view/assets/images/product/product10.png"
-                                        alt="image_not_found">
-                                </a>
-                                <ul class="product_badge_group ul_li_block">
-                                    <li><span
-                                            class="product_badge badge_meats position-absolute rounded-pill text-uppercase">Meats</span>
-                                    </li>
-                                    <li><span
-                                            class="product_badge badge_discount position-absolute rounded-pill">-27%</span>
-                                    </li>
-                                </ul>
-                                <ul class="product_action_btns ul_li_block d-flex">
-                                    <li><a class="tooltips" data-placement="top" title="Search Product" href="#!"><i
-                                                class="fas fa-search"></i></a></li>
-                                    <li><a class="tooltips" data-placement="top" title="Add To Cart"
-                                            href="#product_quick_view" data-bs-toggle="modal"><i
-                                                class="fas fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="rating_wrap d-flex">
-                                <ul class="rating_star ul_li">
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li class="active"><i class="fas fa-star"></i></li>
-                                    <li><i class="far fa-star"></i></li>
-                                </ul>
-                                <span class="shop_review_text">( 4.0 )</span>
-                            </div>
-                            <div class="product_content">
-                                <h3 class="product_title">
-                                    <a href="product-detail.html">Organic Cabbage</a>
-                                </h3>
-                                <div class="product_price">
-                                    <span class="sale_price pe-1">$50.00</span>
-                                    <del>$65.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

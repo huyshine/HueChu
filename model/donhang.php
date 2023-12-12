@@ -100,8 +100,6 @@ function admin_show_chitiet_order($order_id)
     return $order_details;
 }
 
-
-
 function showdonhangadmin($kyw, $status_id)
 {
     include '../ketnoi/ketnoi.php';

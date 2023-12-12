@@ -45,14 +45,7 @@ function show_top3_sp()
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $products;
 }
-function view($id)
-{
-    include './ketnoi/ketnoi.php';
 
-    $sql = " UPDATE products SET view = view + 1 where  product_id = '$id'";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-}
 function chitiet_sp($id)
 {
     include './ketnoi/ketnoi.php';
@@ -86,33 +79,6 @@ function addsp($product_name, $price, $description, $quantity, $cate_id, $total)
             $img2 = $ima[1];
             $img3 = $ima[2];
             $img4 = $ima[3];
-            // if (strlen($file2) > 0) {
-            //     $ext2 = pathinfo($file2);
-            //     $ext2 = $ext2['extension'];
-            //     if ($ext2 != "png" && $ext2 != "jpeg" && $ext2 != "jpg" && $ext2 != "gif") {
-            //         $error['img2'] = "Không đúng định dạnh ảnh";
-            //     } else {
-            //         $img2 = $file2;
-            //     }
-            // }
-            // if (strlen($file3) > 0) {
-            //     $ext3 = pathinfo($file3);
-            //     $ext3 = $ext3['extension'];
-            //     if ($ext3 != "png" && $ext3 != "jpeg" && $ext3 != "jpg" && $ext3 != "gif") {
-            //         $error['img3'] = "Không đúng định dạnh ảnh";
-            //     } else {
-            //         $img3 = $file3;
-            //     }
-            // }
-            // if (strlen($file4) > 0) {
-            //     $ext4 = pathinfo($file4);
-            //     $ext4 = $ext4['extension'];
-            //     if ($ext4 != "png" && $ext4 != "jpeg" && $ext4 != "jpg" && $ext4 != "gif") {
-            //         $error['img4'] = "Không đúng định dạnh ảnh";
-            //     } else {
-            //         $img4 = $file4;
-            //     }
-            // }
         } else {
             $error['img'] = "Bạn chưa up ảnh";
         }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 12, 2023 lúc 05:57 AM
+-- Thời gian đã tạo: Th12 12, 2023 lúc 02:50 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.1.12
 
@@ -37,10 +37,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cate_id`, `cate_name`) VALUES
-(1, 'Táo'),
-(2, 'Dưa'),
-(3, 'Hồng'),
-(4, 'Lê');
+(6, 'Trái cây tươi'),
+(7, 'Trái cây hữu cơ'),
+(8, 'Trái cây nhập khẩu');
 
 -- --------------------------------------------------------
 
@@ -88,10 +87,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `price`, `img`, `img_2`, `img_3`, `img_4`, `description`, `quantity`, `cate_id`, `ngaynhap`) VALUES
-(1, 'Dưa hấu Mỹ', 20000, 'product(1).png', 'product.png', '', '', 'Sản phẩm tuyệt vời', 18, 2, '2023-11-24'),
-(2, 'Dưa Hấu 2 update', 300000, 'product(1).png', '', '', '', 'Test nha', 300, 2, '2023-11-24'),
-(3, 'Lê', 200000, 'pngtree-green-fruit-sydney-pear-png-image_376887.jpg', '', '', '', 'Lê ngon lắm !', 20, 4, '2023-12-06'),
-(4, 'Lê 2', 200000, 'pngtree-green-fruit-sydney-pear-png-image_376887.jpg', '', '', '', 'Lê ngon lắm !', 15, 4, '2023-12-06');
+(5, 'Trái táo Fuji', 25000, 'tao-fuji-my.png', '', '', '', 'Táo Fuji từ vùng đất phong phú, ngọt ngào và giòn rụm.', 100, 6, '2023-12-11'),
+(6, 'Chuối hữu cơ', 20000, '8570-495081623926454-1623926454--400x400.png', '', '', '', 'Chuối hữu cơ, chín mọng, giàu dinh dưỡng.', 80, 7, '2023-12-11'),
+(7, 'Cam sành', 30000, 'cam-sanh-1-1134.jpg', '', '', '', 'Cam sành ngọt, giàu vitamin C.', 120, 6, '2023-12-11'),
+(8, ' Dâu tây đỏ', 35000, 'hat-giong-dau-tay-do-1.5_.jpg', '', '', '', 'Dâu tây đỏ tươi ngon, thơm ngọt.', 90, 6, '2023-12-11'),
+(9, 'Lê Nam Phi', 28000, '61895138_2511254812253242_6069857926867058688_n-min.jpg', '', '', '', 'Lê Nam Phi, vị ngọt tự nhiên, mềm mịn.', 75, 8, '2023-12-11'),
+(10, 'Xoài Cat Chu', 40000, 'xoai-cat-chu-dong-thap-co-gi-dac-biet-cach-chon-mua-gia-bao-nhieu-202302251056161355.jpg', '', '', '', 'Xoài Cat Chu, hương vị đặc trưng, giòn ngọt.', 85, 8, '2023-12-11');
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,9 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`user_id`, `username`, `password`, `hovaten`, `email`, `tel`, `vaitro_id`) VALUES
-(2, 'ChuHue', '123456', 'Chu Thị Huệ', 'user1@gmail.com', '0867435803', 2);
+(2, 'ChuHue', '123456', 'Chu Thị Huệ', 'user1@gmail.com', '0867435803', 2),
+(3, 'chuhue', '123456', 'Chu Thị Huệ', 'Nguyen1@gmail.com', '0123456789', 1),
+(4, 'huyen', '123456', 'Chu Thị Huệ', 'User2@gmail.com', '0874654822', 1);
 
 -- --------------------------------------------------------
 
@@ -131,15 +134,6 @@ CREATE TABLE `tbl_order` (
   `name` varchar(255) NOT NULL,
   `ngayorder` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_order`
---
-
-INSERT INTO `tbl_order` (`order_id`, `user_id`, `status_id`, `address`, `phone`, `name`, `ngayorder`) VALUES
-(32, 2, 1, 'Trịnh Văn Bô', '0867435803', 'Huệ Chu', '2023-12-11 15:14:34'),
-(35, 2, 3, 'Hà Nội', '0867435803', 'Huệ Chu', '2023-12-12 04:22:32'),
-(36, 2, 1, 'Hà Nội', '0867435803', 'Huệ Chu', '2023-12-12 04:44:19');
 
 -- --------------------------------------------------------
 
@@ -247,7 +241,7 @@ ALTER TABLE `vaitro`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `order_status`
@@ -259,13 +253,13 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`

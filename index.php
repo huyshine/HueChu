@@ -8,7 +8,6 @@ include("./model/taikhoan.php");
 include("./model/sanpham.php");
 include("./model/donhang.php");
 include("./model/danhmuc.php");
-include("./model/binhluan.php");
 
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
@@ -106,12 +105,10 @@ if (isset($_GET["page"])) {
                 $product = chitiet_sp($productId);
                 $_SESSION['cart'][$productId]['quantity'] = $quantity;
                 // echo "$quantity  và $productId";
-                echo "<script>alert('Cập nhật thành công')</script>";
             }
             if (isset($_POST['remove_cart'])) {
                 $productId = $_POST['productId'];
                 unset($_SESSION['cart'][$productId]);
-                echo "<script>alert('Xóa thành công')</script>";
             }
             include("./view/client/page/gio-hang.php");
             break;
@@ -126,7 +123,6 @@ if (isset($_GET["page"])) {
                 $phone = $_POST['phone'];
                 $address = $_POST['address'];
                 dathang($name, $phone, $address, $user_id);
-                echo '<script>alert("Đặt hàng thành công")</script>';
             }
             header('location: index.php?page=thank');
             break;

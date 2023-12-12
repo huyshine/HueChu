@@ -13,7 +13,6 @@ require_once '../ketnoi/ketnoi.php';
 require_once '../view/admin/header.php';
 require_once "../model/danhmuc.php";
 require_once "../model/sanpham.php";
-require_once "../model/binhluan.php";
 require_once '../model/taikhoan.php';
 require_once '../model/donhang.php';
 // require_once "../model/doanhthu.php";    

@@ -252,10 +252,7 @@
                         <div class="product_tags_wrap d-flex align-items-center mt-5">
                             <h6 class="product_tags_title text-uppercase">tags:</h6>
                             <div class="tags_item d-flex align-items-center">
-                                <a href="#!">T-shirt,</a>
-                                <a class="ms-1" href="#!">Clothes,</a>
-                                <a class="ms-1" href="#!">Fashion,</a>
-                                <a class="ms-1" href="#!">Shop</a>
+                                <a href="index.php?page=san-pham&iddm=<?php echo $product['cate_id'] ?>"><?php echo $product['cate_name'] ?></a>
                             </div>
                         </div>
                         <div class="product_social_links d-flex align-items-center">

@@ -109,9 +109,9 @@
                                                                 <i class="fas fa-search"></i>
                                                             </a>
                                                         </li>
-                                                        <li><a class="tooltips" data-placement="top" title="Add To Cart"
+                                                        <!-- <li><a class="tooltips" data-placement="top" title="Add To Cart"
                                                                 href="product-detail.html"><i
-                                                                    class="fas fa-shopping-bag"></i></a></li>
+                                                                    class="fas fa-shopping-bag"></i></a></li> -->
                                                     </ul>
                                                 </div>
                                                 <div class="rating_wrap d-flex">

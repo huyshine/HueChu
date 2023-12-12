@@ -233,9 +233,9 @@
                                                                     </h4>
                                                                 </div>
                                                             </div>
-                                                            <?php if ($vaitro_id == 2): ?>
+                                                            <!-- <?php if ($vaitro_id == 1): ?> -->
                                                                 <li><a href="admin/index.php">Trang quản trị</a></li>
-                                                            <?php endif ?>
+                                                            <!-- <?php endif ?> -->
                                                             <li><a href="index.php?page=don-hang">Thông tin đơn hàng</a>
                                                             </li>
                                                             <li><a href="index.php?page=vao_trang_taikhoan">Tài khoản</a>

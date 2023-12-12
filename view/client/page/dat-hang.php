@@ -109,11 +109,11 @@
 
     <section class="cart_section clearfix" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
-            <form action="index.php?page=gui-dat-hang&productId=<?php echo $product['product_id'] ?>" method="post" enctype="multipart/form-data">
+            <form action="index.php?page=gui-dat-hang" method="post" enctype="multipart/form-data">
                 <!-- Billing info start -->
                 <div class="billing_form mb_50">
                     <h3 class="form_title mb_30">Billing details</h3>
-                    <div >
+                    <div>
                         <div class="form_wrap">
                             <div class="form_item">
                                 <span class="input_title">Name<sup>*</sup></span>
@@ -151,34 +151,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="cart_product">
-                                                    <div class="item_image">
-                                                        <img src="./view/assets/images/cart/cart1.png"
-                                                            alt="image_not_found">
+                                        <?php foreach ($products as $product): ?>
+                                            <tr>
+                                                <td>
+                                                    <div class="cart_product">
+                                                        <div class="item_image">
+                                                            <img src="./view/public/img/sanpham/<?php echo $product['img'] ?>"
+                                                                alt="image_not_found">
+                                                        </div>
+                                                        <div class="item_content">
+                                                            <h4 class="item_title mb_0">
+                                                                <?php echo $product['name'] ?>
+                                                            </h4>
+                                                        </div>
                                                     </div>
-                                                    <div class="item_content">
-                                                        <h4 class="item_title mb_0">
-                                                            <?php echo $product['product_name'] ?>
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="price_text">
-                                                    <?php echo $product['price'] ?> VNĐ
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="quantity_text">
-                                                    <?php echo $quantity ?>
-                                                </span>
-                                            </td>
-                                            <td><span class="total_price">
-                                                    <?php echo $total ?> VNĐ
-                                                </span></td>
-                                        </tr>
+                                                </td>
+                                                <td>
+                                                    <span class="price_text">
+                                                        <?php echo $product['price'] ?> VNĐ
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="quantity_text">
+                                                        <?php echo $product['quantity'] ?>
+                                                    </span>
+                                                </td>
+                                                <td><span class="total_price">
+                                                        <?php echo ($product['quantity'] * $product['price']) ?> VNĐ
+                                                    </span></td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                         <tr>
                                             <td></td>
                                             <td></td>
@@ -186,10 +188,15 @@
                                                 <span class="subtotal_text">Subtotal</span>
                                             </td>
                                             <td><span class="total_price">
-                                                    <?php echo $total ?> VNĐ
+                                                    <?php
+                                                    $total = 0;
+                                                    foreach ($products as $productId => $productDetails) {
+                                                        $total += $productDetails['price'] * $productDetails['quantity'];
+                                                    }
+                                                    echo "Total: " . $total;
+                                                    ?>
                                                 </span></td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>

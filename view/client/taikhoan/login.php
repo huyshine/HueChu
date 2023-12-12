@@ -19,10 +19,10 @@ if (isset($_SESSION['user'])) {
                 </div>
             </div>
         </div>
-        <div class="flex flex-col mx-auto w-[50%] text-center">
-            <div class="col-lg-6 w-full">
+        <div class="d-flex flex-column mx-auto w-50 text-center">
+            <div class="col-lg-6 w-100">
                 <div class="account-login-inner w-full">
-                    <form class="w-full" action="index.php?page=dangnhap" method="post">
+                    <form style="margin-left: 200px;" class=" w-100" action="index.php?page=dangnhap" method="post">
 
                         <table class="dangnhap w-full">
                             <tr>
@@ -50,13 +50,13 @@ if (isset($_SESSION['user'])) {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4"> <button class="theme-btn-2 btn btn-effect-2 border-[#e53e29] bg-[#e53e29]" type="submit" name="dangnhap" class="dn">Đăng nhập</button></td>
+                                <td colspan="4"> <button class="btn btn-primary" type="submit" name="dangnhap" class="dn">Đăng nhập</button></td>
                             </tr>
                             <tr>
                                 
                             </tr>
                             <tr>
-                                <td class="dangky2 flex item-center justify-center gap-x-1 mt-3" >Bạn  có tài khoản? <a href="index.php?page=vao_trang_dangky">Đăng ký ngay</a><span>Hoặc</span><a href="index.php?act=vao_trang_quenmk">Quên mật khẩu ?</a></td>
+                                <td class="dangky2 flex item-center justify-center gap-x-1 mt-3" >Bạn  có tài khoản? <a href="index.php?page=vao_trang_dangky">Đăng ký ngay</a></td>
                             </tr>
                         </table>
                     </form>

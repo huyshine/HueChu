@@ -16,10 +16,10 @@ if (isset($_SESSION['user'])) {
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3 w-[50%] mx-auto">
+        <div class="d-flex flex-column mx-auto w-50 text-center">
+            <div class="col-lg-6 w-100">
                 <div class="account-login-inner w-full">
-                    <form class="w-full" action="index.php?page=dangkytk" method="post" enctype="multipart/form-data">
+                    <form style="margin-left: 180px;" class=" w-100" action="index.php?page=dangkytk" method="post" enctype="multipart/form-data">
                         <table class="dangky w-full">
 
                             <tr>
@@ -108,11 +108,11 @@ if (isset($_SESSION['user'])) {
                             ?>
                             <tr>
                                 <td class="mx-auto text-center">
-                                    <button type="submit" name="dangky" class="dk theme-btn-2 btn btn-effect-2 border-[#e53e29] bg-[#e53e29] mx-auto">Đăng ký</button>
+                                    <button type="submit" name="dangky" class="btn btn-primary">Đăng ký</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="dangky2 flex item-center justify-center gap-x-1 mt-3">Bạn đã có tài khoản? <a href="index.php?page=vao_trang_dangky">Đăng nhập ngay</a><span>Hoặc</span><a href="index.php?act=vao_trang_quenmk">Quên mật khẩu ?</a></td>
+                                <td class="dangky2 flex item-center justify-center gap-x-1 mt-3">Bạn đã có tài khoản? <a href="index.php?page=vao_trang_dangky">Đăng nhập ngay</a></td>
                             </tr>
                         </table>
                     </form>

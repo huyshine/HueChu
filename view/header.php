@@ -162,9 +162,6 @@
                                                                 <li>
                                                                     <a href="index.php?page=nguoi-ban">Vendor</a>
                                                                 </li>
-                                                                <li>
-                                                                    <a href="index.php?page=so-sanh">Compare Page</a>
-                                                                </li>
                                                             </ul>
                                                             <div class="mega_item_thumb1 position-absolute">
                                                                 <img src="./view/assets/images/mega/mega1.png"
@@ -177,10 +174,7 @@
                                                             <h4>All Inner Page</h4>
                                                             <ul class="list-unstyled">
                                                                 <li>
-                                                                    <a href="index.php?page=dat-hang">Checkout Page</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="index.php?page=gio-hang">Cart Page</a>
+                                                                    <a href="index.php?page=so-sanh">Compare Page</a>
                                                                 </li>
                                                             </ul>
                                                             <div class="mega_item_thumb2 position-absolute">
@@ -196,6 +190,10 @@
                                     <li class="nav-item nav_item_has_child dropdown px-2">
                                         <a class="nav-link" href="index.php?page=lien-he" id="contact_submenu"
                                             role="button" aria-expanded="false">Contacts</a>
+                                    </li>
+                                    <li class="nav-item nav_item_has_child dropdown px-2">
+                                        <a class="nav-link" href="index.php?page=gio-hang" id="contact_submenu"
+                                            role="button" aria-expanded="false">Cart</a>
                                     </li>
                                 </ul>
                             </div>
@@ -238,10 +236,10 @@
                                                             <?php if ($vaitro_id == 2): ?>
                                                                 <li><a href="admin/index.php">Trang quản trị</a></li>
                                                             <?php endif ?>
+                                                            <li><a href="index.php?page=don-hang">Thông tin đơn hàng</a>
+                                                            </li>
                                                             <li><a href="index.php?page=vao_trang_taikhoan">Tài khoản</a>
                                                             </li>
-                                                            <li><a href="index.php?page=vao_trang_doimatkhau">Đổi mật
-                                                                    khẩu</a></li>
                                                             <li><a href="index.php?page=dangxuat">Đăng xuất</a></li>
                                                         <?php } else { ?>
                                                             <li><a href="index.php?page=vao_trang_dangnhap">Đăng nhập</a>
@@ -260,7 +258,9 @@
                                                 <i class="fas fa-shopping-bag position-relative"
                                                     data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                                                     aria-controls="offcanvasRight"><span
-                                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">2</span></i></a>
+                                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                                                    </span></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -476,75 +476,58 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <div class="prdc_ctg_product_content mt-1 d-flex align-items-center">
-                                    <div
-                                        class="prdc_ctg_product_img d-flex justify-content-center align-items-center me-3">
-                                        <img src="./view/assets/images/category/cat6.png" alt="image_not_found">
-                                    </div>
-                                    <div class="prdc_ctg_product_text">
-                                        <div class="prdc_ctg_product_title my-2">
-                                            <h5>Organic Cabbage</h5>
+                                <?php if (isset($_SESSION['cart'])) {
+                                    foreach ($_SESSION['cart'] as $productId => $productDetails): ?>
+                                        <div class="prdc_ctg_product_content mt-1 d-flex align-items-center">
+                                            <div
+                                                class="prdc_ctg_product_img d-flex justify-content-center align-items-center me-3">
+                                                <img src="./view/public/img/sanpham/<?php echo $productDetails['img'] ?>"
+                                                    alt="image_not_found">
+                                            </div>
+                                            <div class="prdc_ctg_product_text">
+                                                <div class="prdc_ctg_product_title my-2">
+                                                    <h5>
+                                                        <?php echo $productDetails['name'] ?>
+                                                    </h5>
+                                                </div>
+                                                <div class="prdc_ctg_product_price mt-1 product_price">
+                                                    <span class="sale_price pe-1">Price :
+                                                        <?php echo $productDetails['price'] ?>
+                                                    </span>
+                                                </div>
+                                                <div class="prdc_ctg_product_price mt-1 product_price">
+                                                    <span class="sale_price pe-1">Quantity :
+                                                        <?php echo $productDetails['quantity'] ?>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="prdc_ctg_product_price mt-1 product_price">
-                                            <span class="sale_price pe-1">$50.00</span>
-                                            <del>$70.00</del>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="prdc_ctg_product_content mt-1 d-flex align-items-center">
-                                    <div
-                                        class="prdc_ctg_product_img d-flex justify-content-center align-items-center me-3">
-                                        <img src="./view/assets/images/category/cat7.png" alt="image_not_found">
-                                    </div>
-                                    <div class="prdc_ctg_product_text">
-                                        <div class="prdc_ctg_product_title my-2">
-                                            <h5>Organic Cabbage</h5>
-                                        </div>
-                                        <div class="prdc_ctg_product_price mt-1 product_price">
-                                            <span class="sale_price pe-1">$40.00</span>
-                                            <del>$60.00</del>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="prdc_ctg_product_content mt-1 d-flex align-items-center">
-                                    <div
-                                        class="prdc_ctg_product_img d-flex justify-content-center align-items-center me-3">
-                                        <img src="./view/assets/images/category/cat8.png" alt="image_not_found">
-                                    </div>
-                                    <div class="prdc_ctg_product_text">
-                                        <div class="prdc_ctg_product_title my-2">
-                                            <h5>Organic Cabbage</h5>
-                                        </div>
-                                        <div class="prdc_ctg_product_price mt-1 product_price">
-                                            <span class="sale_price pe-1">$70.00</span>
-                                            <del>$90.00</del>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <?php endforeach;
+                                } else { ?>
+                                    <div>Giỏ hàng trống</div>
+                                <?php } ?>
                                 <div class="total_price">
                                     <ul class="ul_li_block mb_30 clearfix">
                                         <li>
                                             <span>Subtotal:</span>
-                                            <span>$215</span>
-                                        </li>
-                                        <li>
-                                            <span>Vat 5%:</span>
-                                            <span>$10.75</span>
-                                        </li>
-                                        <li>
-                                            <span>Discount 15%:</span>
-                                            <span>- $32.25</span>
-                                        </li>
-                                        <li>
-                                            <span>Total:</span>
-                                            <span>$191.8875</span>
+                                            <span>
+                                                <?php
+                                                $total = 0;
+                                                if (isset($_SESSION['cart'])) {
+                                                    foreach ($_SESSION['cart'] as $productId => $productDetails) {
+                                                        $total += $productDetails['price'] * $productDetails['quantity'];
+                                                    }
+                                                }
+                                                echo $total;
+                                                ?> VNĐ
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="sidebar_btns">
                                     <ul class="btns_group ul_li_block clearfix">
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="index.php?page=gio-hang">View Cart</a></li>
+                                        <li><a href="index.php?page=dat-hang">Checkout</a></li>
                                     </ul>
                                 </div>
                             </div>

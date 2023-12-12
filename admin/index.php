@@ -111,21 +111,11 @@ if (isset($_GET['act'])) {
                 // $file4 = $_FILES[''];
                 // Loop through each file
                 for ($i = 0; $i < $total; $i++) {
-
-                    //Get the temp file path
                     $tmpFilePath = $_FILES['img']['tmp_name'][$i];
-
-                    //Make sure we have a file path
                     if ($tmpFilePath != "") {
-                        //Setup our new file path
                         $image[$i] = $_FILES['img']['name'][$i];
                     }
                 }
-                // $file = $image[0];
-                // $file2 = $image[1];
-                // $file3 = $image[2];
-                // $file4 = $image[3];
-
                 addsp($product_name, $price, $description, $quantity, $cate_id, $total);
                 if (!isset($_SESSION['error_product']['img']) && !isset($_SESSION['error_product']['product_name']) && !isset($_SESSION['error_product']['price']) && !isset($_SESSION['error_product']['quantity'])) {
                     header("location: index.php?act=showsp");
@@ -349,7 +339,7 @@ if (isset($_GET['act'])) {
             if (isset($_POST['btn_capnhat_donhang'])) {
                 $order_id = $_POST['order_id'];
                 $status = $_POST['trangtdh'];
-                $ngaydathang = $_POST['ngaydathang'];
+                $ngaydathang = $_POST['ngayorder'];
                 // $tong = $_POST['tong'];
                 capnhat_donhang($status, $order_id, $ngaydathang);
                 $show_order = showdonhangadmin($kyw, $status_id);
@@ -361,13 +351,11 @@ if (isset($_GET['act'])) {
             $sanpham_top1_view = sanpham_xemnhieunhat();
             $cate = thongke_dm();
             // $doanhthu = show_doanhthu();
-            $sp_binhluannhieu = sanphamdcbinhluannhieu();
             require_once "../view/admin/home.php";
             break;
     }
 
 } else {
-    $sp_binhluannhieu = sanphamdcbinhluannhieu();
     $khachvip = top3khachhang_muanhieu();
     $sanpham_top1_view = sanpham_xemnhieunhat();
     $cate = thongke_dm();

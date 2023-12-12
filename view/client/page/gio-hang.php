@@ -120,50 +120,64 @@
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="cart_product position-relative">
-                                        <div class="item_image">
-                                            <img src="./view/public/img/sanpham/<?php echo $product['img'] ?>"
-                                                alt="image_not_found">
+                            <?php foreach ($_SESSION['cart'] as $productId => $productDetails): ?>
+                                <tr>
+                                    <td>
+                                        <div class="cart_product position-relative">
+                                            <div class="item_image">
+                                                <img src="./view/public/img/sanpham/<?php echo $productDetails['img'] ?>"
+                                                    alt="image_not_found">
+                                            </div>
+                                            <button type="button" class="remove_btn position-absolute">
+                                                <i class="fas fa-times"></i>
+                                            </button>
                                         </div>
-                                        <button type="button" class="remove_btn position-absolute">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" name="productId" value="<?php echo $product['product_id'] ?>" style="display: none;">
-                                </td>
-                                <td>
-                                    <div class="item_content">
-                                        <a href="shop-list.html">
-                                            <h4 class="item_title">
-                                                <?php echo $product['product_name'] ?>
-                                            </h4>
-                                        </a>
-                                        <span class="item_type">
-                                            <?php echo $product['cate_name'] ?>
+                                        <input type="text" name="productId" value="<?php echo $product['product_id'] ?>"
+                                            style="display: none;">
+                                    </td>
+                                    <td>
+                                        <div class="item_content">
+                                            <a href="shop-list.html">
+                                                <h4 class="item_title">
+                                                    <?php echo $productDetails['name'] ?>
+                                                </h4>
+                                            </a>
+                                            <!-- <span class="item_type">
+                                                <?php echo $product['cate_name'] ?>
+                                            </span> -->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="price_text">
+                                            <?php echo $productDetails['price'] ?> VNĐ
                                         </span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="price_text">
-                                        <?php echo $product['price'] ?> VNĐ
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="quantity_input">
-                                        <span class="input_number_decrement">–</span>
-                                        <input class="input_number" name="quantity" value="<?php echo $product['quantity'] ?>">
-                                        <span class="input_number_increment">+</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="total_price"><?php echo $product['quantity']*$product['price'] ?> VNĐ</span>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <div class="quantity_input">
+                                            <span class="input_number_decrement">–</span>
+                                            <input class="input_number" name="quantity"
+                                                value="<?php echo $productDetails['quantity'] ?>">
+                                            <span class="input_number_increment">+</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="total_price">
+                                            <?php echo $productDetails['quantity'] * $productDetails['price'] ?> VNĐ
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <form action="index.php?page=remove_cart" method="post">
+                                            <input type="hidden" name="productId" value="<?php echo $productDetails['id'] ?>">
+                                            <button name="remove_cart" onclick="return confirm('Bạn có chắc chắn muốn xóa không ?')" type="submit">Xóa</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
                         </tbody>
                     </table>
                     <div style="margin-top: 50px;" class="coupon_wrap d-flex justify-content-between">
@@ -190,14 +204,26 @@
                         <h3 class="table_title text-center">Cart Total</h3>
                         <ul class="ul_li_block clearfix">
                             <li><span>Subtotal</span> <span>
-                                    <?php echo $product['price'] ?> VNĐ
+                                    <?php
+                                    $total = 0;
+                                    foreach ($_SESSION['cart'] as $productId => $productDetails) {
+                                        $total += $productDetails['price'] * $productDetails['quantity'];
+                                    }
+                                    echo "Total: " . $total;
+                                    ?> VNĐ
                                 </span></li>
                             <li><span>Total</span> <span>
-                                    <?php echo $product['price'] ?> VNĐ
+                                    <?php
+                                    $total = 0;
+                                    foreach ($_SESSION['cart'] as $productId => $productDetails) {
+                                        $total += $productDetails['price'] * $productDetails['quantity'];
+                                    }
+                                    echo "Total: " . $total;
+                                    ?> VNĐ
                                 </span></li>
                         </ul>
                         <div class="btn_wrap pt-0 text-center">
-                            <a href="index.php?page=dat-hang&productId=<?php echo $product['product_id'] ?>" class="btn text-uppercase text-white rounded-pill">Proceed
+                            <a href="index.php?page=dat-hang" class="btn text-uppercase text-white rounded-pill">Proceed
                                 to
                                 Checkout</a>
                         </div>
